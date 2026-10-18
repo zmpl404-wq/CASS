@@ -216,7 +216,7 @@
           <span class="hide-on-mobile">清空</span>
         </button>
 
-        <button id="btn-reset-demo" class="btn btn-secondary" title="重設並還原示範資料">
+        <button id="btn-reset-demo" class="btn btn-secondary" title="復原人員與班別設定，當前週期班別隨機，其他週期清空">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 2v6h6"></path><path d="M21 12A9 9 0 0 0 6 5.3L3 8"></path><path d="M21 22v-6h-6"></path><path d="M3 12a9 9 0 0 0 15 6.7l3-2.7"></path></svg>
           <span class="hide-on-mobile">範本</span>
         </button>
@@ -372,9 +372,6 @@
         <div class="drawer-shifts-grid" id="drawer-shifts-list"></div>
 
         <div class="drawer-actions">
-          <button id="btn-sheet-set-off" class="btn btn-secondary drawer-btn-full" style="color:var(--text-secondary);">
-            🏖️ 排定例休 / 請假 (OFF)
-          </button>
           <button id="btn-sheet-clear" class="btn btn-secondary drawer-btn-full" style="color:var(--accent-danger);">
             ❌ 清除此格班別
           </button>
@@ -426,30 +423,20 @@
         <button class="btn btn-icon-only modal-close-btn" data-close="modal-staff">&times;</button>
       </div>
       <div class="modal-body">
-        <!-- Section: Custom Role Management -->
-        <div class="card-embedded">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem;">
-            <span style="font-weight:700;font-size:0.85rem;color:var(--text-primary);">🏢 職稱清單 (可自定義增減，預設店長、正職、工讀生皆可刪除)</span>
-          </div>
-          <div class="roles-chips-container" id="roles-chips-list">
-            <!-- Dynamic Role Chips with delete button -->
-          </div>
-          <div style="display:flex;gap:0.45rem;margin-top:0.6rem;">
-            <input type="text" id="input-new-role" class="form-control" placeholder="輸入新職稱名稱 (如: 副店長、組長)" style="font-size:0.8rem;padding:0.4rem 0.65rem;">
-            <button id="btn-add-role" class="btn btn-secondary" style="font-size:0.8rem;padding:0.4rem 0.75rem;">＋ 新增職稱</button>
-          </div>
-        </div>
-
-        <hr style="border:0;border-top:1px solid var(--border-color);">
-
         <!-- Section: Add/Edit Staff Member -->
         <form id="form-add-staff">
           <input type="hidden" id="staff-edit-id" value="">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;">
-            <h4 id="staff-form-title" style="font-size:0.9rem;font-weight:700;color:var(--text-primary);margin:0;">👤 新增員工同仁</h4>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;flex-wrap:wrap;gap:0.5rem;">
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <h4 id="staff-form-title" style="font-size:0.9rem;font-weight:700;color:var(--text-primary);margin:0;">👤 新增員工同仁</h4>
+              <label for="staff-color" style="margin:0;font-size:0.78rem;color:var(--text-secondary);display:inline-flex;align-items:center;gap:5px;cursor:pointer;" title="點擊選擇代表色">
+                <span>專屬代表色:</span>
+                <input type="color" id="staff-color" class="form-control" value="#6366f1" style="width:28px;height:28px;padding:0;border:none;border-radius:50%;cursor:pointer;background:transparent;">
+              </label>
+            </div>
             <button type="button" id="btn-cancel-edit-staff" class="btn btn-secondary" style="font-size:0.75rem;padding:0.25rem 0.6rem;display:none;">取消編輯</button>
           </div>
-          <div class="form-row">
+          <div class="form-row-2col">
             <div class="form-group">
               <label for="staff-name">員工姓名 *</label>
               <input type="text" id="staff-name" class="form-control" placeholder="例：林店長、陳小美" required>
@@ -462,7 +449,7 @@
             </div>
           </div>
 
-          <div class="form-row" style="margin-top:0.75rem;">
+          <div class="form-row-2col" style="margin-top:0.65rem;">
             <div class="form-group">
               <label for="staff-wage">時薪 (NT$) *</label>
               <input type="number" id="staff-wage" class="form-control" value="200" min="0" required>
@@ -473,11 +460,7 @@
             </div>
           </div>
 
-          <div class="form-row" style="margin-top:0.75rem;">
-            <div class="form-group">
-              <label for="staff-color">專屬代表顏色</label>
-              <input type="color" id="staff-color" class="form-control" value="#6366f1" style="height:42px;padding:2px 4px;cursor:pointer;">
-            </div>
+          <div class="form-row-2col" style="margin-top:0.65rem;align-items:flex-end;">
             <div class="form-group">
               <label for="staff-off-pref">固定休假偏好 (星期)</label>
               <select id="staff-off-pref" class="form-control">
@@ -491,12 +474,11 @@
                 <option value="0">固定週日休</option>
               </select>
             </div>
-          </div>
-
-          <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
-            <button type="submit" class="btn btn-primary" id="btn-save-staff">
-              ＋ 加入同仁
-            </button>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" id="btn-save-staff" style="width:100%;height:38px;">
+                ＋ 加入同仁
+              </button>
+            </div>
           </div>
         </form>
 
@@ -504,6 +486,22 @@
 
         <h4 style="font-size:0.9rem;font-weight:700;color:var(--text-secondary);margin-bottom:0.75rem;">現有人員名冊 (<span id="staff-count-badge">0</span> 人)</h4>
         <div id="staff-entity-list" class="entity-list"></div>
+
+        <hr style="border:0;border-top:1px solid var(--border-color);margin:1.25rem 0;">
+
+        <!-- Section: Custom Role Management (移至最下方) -->
+        <div class="card-embedded">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem;">
+            <span style="font-weight:700;font-size:0.85rem;color:var(--text-primary);">🏢 職稱清單 (可自定義增減，預設店長、正職、工讀生皆可刪除)</span>
+          </div>
+          <div class="roles-chips-container" id="roles-chips-list">
+            <!-- Dynamic Role Chips with delete button -->
+          </div>
+          <div style="display:flex;gap:0.45rem;margin-top:0.6rem;">
+            <input type="text" id="input-new-role" class="form-control" placeholder="輸入新職稱名稱 (如: 副店長、組長)" style="font-size:0.8rem;padding:0.4rem 0.65rem;">
+            <button id="btn-add-role" class="btn btn-secondary" style="font-size:0.8rem;padding:0.4rem 0.75rem;">＋ 新增職稱</button>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary modal-close-btn" data-close="modal-staff">關閉</button>
@@ -525,42 +523,51 @@
       </div>
       <div class="modal-body">
         <form id="form-add-shift">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="shift-name">班別中文名稱 *</label>
-              <input type="text" id="shift-name" class="form-control" placeholder="例：早班、休假" required>
-            </div>
+          <!-- 假別設定 (置頂) -->
+          <div class="form-group" style="margin-bottom:0.65rem;padding:0.45rem 0.65rem;background:var(--bg-subtle);border-radius:var(--radius-sm);border:1px solid var(--border-color);">
+            <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;margin:0;font-weight:600;">
+              <input type="checkbox" id="shift-is-leave" style="width:16px;height:16px;">
+              <span style="font-size:0.825rem;color:var(--text-primary);">🏖️ 此班別屬於假別（計入休假未休統計，如：例休、事假、病假）</span>
+            </label>
+          </div>
+
+          <div class="form-group" style="margin-bottom:0.65rem;">
+            <label for="shift-name">班別中文名稱 *</label>
+            <input type="text" id="shift-name" class="form-control" placeholder="例：A、B、C、打菜、休假" required>
+          </div>
+
+          <!-- 班別中文代碼與英文代碼並排，不要分兩行 -->
+          <div class="form-row-2col" style="margin-bottom:0.65rem;">
             <div class="form-group">
               <label for="shift-code">中文代碼 (限1字) *</label>
-              <input type="text" id="shift-code" class="form-control" placeholder="例：早、中、晚、夜、休" maxlength="1" required>
+              <input type="text" id="shift-code" class="form-control" placeholder="例：A、B、休" maxlength="1" required>
             </div>
-          </div>
-
-          <div class="form-row" style="margin-top:0.75rem;">
             <div class="form-group">
               <label for="shift-en-code">英文代碼 (限1字大寫) *</label>
-              <input type="text" id="shift-en-code" class="form-control" placeholder="例：M、E、N、O" maxlength="1" style="text-transform:uppercase;" required>
-            </div>
-            <div class="form-group">
-              <label for="shift-text-color">字體代碼顏色</label>
-              <input type="color" id="shift-text-color" class="form-control" value="#ffffff" style="height:42px;padding:2px 4px;cursor:pointer;">
+              <input type="text" id="shift-en-code" class="form-control" placeholder="例：A、B、H" maxlength="1" style="text-transform:uppercase;" required>
             </div>
           </div>
 
-          <div class="form-row" style="margin-top:0.75rem;">
-            <div class="form-group">
-              <label for="shift-color">色塊底色</label>
-              <input type="color" id="shift-color" class="form-control" value="#10b981" style="height:42px;padding:2px 4px;cursor:pointer;">
+          <!-- 字體代碼顏色、色塊底色、底色透明放同一列 -->
+          <div class="form-row-3col" style="margin-bottom:0.65rem;align-items:flex-end;">
+            <div class="form-group" style="flex:1;">
+              <label for="shift-text-color" style="font-size:0.78rem;">字體代碼顏色</label>
+              <input type="color" id="shift-text-color" class="form-control" value="#ffffff" style="height:38px;padding:2px 4px;cursor:pointer;">
             </div>
-            <div class="form-group" style="justify-content:center;">
-              <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;margin-top:1.2rem;">
+            <div class="form-group" style="flex:1;">
+              <label for="shift-color" style="font-size:0.78rem;">色塊底色</label>
+              <input type="color" id="shift-color" class="form-control" value="#10b981" style="height:38px;padding:2px 4px;cursor:pointer;">
+            </div>
+            <div class="form-group" style="flex:1.3;display:flex;align-items:center;padding-bottom:8px;">
+              <label style="display:flex;align-items:center;gap:0.35rem;cursor:pointer;font-size:0.78rem;margin:0;">
                 <input type="checkbox" id="shift-bg-transparent" style="width:16px;height:16px;">
-                <span>底色透明（無色塊，僅顯示字體代碼）</span>
+                <span>底色透明</span>
               </label>
             </div>
           </div>
 
-          <div class="form-row" style="margin-top:0.75rem;">
+          <!-- 開始時間與結束時間，並列不要分兩行 -->
+          <div class="form-row-2col" style="margin-bottom:0.65rem;">
             <div class="form-group">
               <label for="shift-start">開始時間 *</label>
               <input type="time" id="shift-start" class="form-control" value="09:00" required>
@@ -571,26 +578,23 @@
             </div>
           </div>
 
-          <div class="form-row" style="margin-top:0.75rem;">
+          <!-- 計薪工時、休息時間、最低需求人數平均三格一行 -->
+          <div class="form-row-3col-equal" style="margin-bottom:0.65rem;">
             <div class="form-group">
-              <label for="shift-hours">計薪工時 (小時) *</label>
-              <input type="number" id="shift-hours" class="form-control" value="8" step="0.5" min="0" max="24" required>
+              <label for="shift-break-hours">休息時間</label>
+              <input type="number" id="shift-break-hours" class="form-control" value="1" step="0.5" min="0" max="12" style="padding:0.4rem 0.5rem;font-size:0.85rem;text-align:center;">
             </div>
             <div class="form-group">
-              <label for="shift-target-staff">每日最低需求在班人數</label>
-              <input type="number" id="shift-target-staff" class="form-control" value="2" min="0" max="20">
+              <label for="shift-hours">計薪工時 *</label>
+              <input type="number" id="shift-hours" class="form-control" value="7.5" step="0.5" min="0" max="24" style="padding:0.4rem 0.5rem;font-size:0.85rem;text-align:center;" required>
+            </div>
+            <div class="form-group">
+              <label for="shift-target-staff" style="font-size:0.78rem;">最低需求人數</label>
+              <input type="number" id="shift-target-staff" class="form-control" value="2" min="0" max="20" style="padding:0.4rem 0.5rem;font-size:0.85rem;text-align:center;">
             </div>
           </div>
 
-          <!-- 假別設定 -->
-          <div class="form-group" style="margin-top:0.75rem;">
-            <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;">
-              <input type="checkbox" id="shift-is-leave" style="width:16px;height:16px;">
-              <span>此班別屬於假別（計入休假未休統計，如：例休、事假、病假）</span>
-            </label>
-          </div>
-
-          <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+          <div style="margin-top:0.75rem;display:flex;justify-content:flex-end;">
             <button type="submit" class="btn btn-primary" id="btn-save-shift">
               ＋ 新增班別
             </button>

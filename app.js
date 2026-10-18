@@ -21,31 +21,236 @@
   const STORAGE_KEY = 'shiftmaster_pro_v2';
   const THEME_KEY = 'shiftmaster_theme';
 
-  // --- Default Roles ---
-  const DEFAULT_ROLES = ['店長', '正職', '工讀生'];
+  // --- 2026-10-18 預設排班範本 (人員名冊與班別設定) ---
+  const DEFAULT_TEMPLATE = {
+  "staff": [
+    {
+      "id": "staff_1792162844249",
+      "name": "蕭葦茹",
+      "role": "店長",
+      "wage": 200,
+      "maxHours": 40,
+      "color": "#ee719e",
+      "offPref": "none",
+      "leaveQuota": 8,
+      "periodMaxHours": 160
+    },
+    {
+      "id": "staff_1792162876427",
+      "name": "吳喬宛",
+      "role": "正職",
+      "wage": 200,
+      "maxHours": 40,
+      "color": "#be38f3",
+      "offPref": "none",
+      "leaveQuota": 8,
+      "periodMaxHours": 40
+    },
+    {
+      "id": "staff_1792162922716",
+      "name": "李青純",
+      "role": "正職",
+      "wage": 200,
+      "maxHours": 40,
+      "color": "#fefb41",
+      "offPref": "none",
+      "leaveQuota": 8,
+      "periodMaxHours": 40
+    },
+    {
+      "id": "staff_1792162949616",
+      "name": "羅靜雯",
+      "role": "老闆",
+      "wage": 200,
+      "maxHours": 40,
+      "color": "#e22400",
+      "offPref": "none",
+      "leaveQuota": 8,
+      "periodMaxHours": 40
+    },
+    {
+      "id": "staff_1792163003194",
+      "name": "陳奕靜",
+      "role": "工讀生",
+      "wage": 200,
+      "maxHours": 40,
+      "color": "#01c7fc",
+      "offPref": "none",
+      "leaveQuota": 8,
+      "periodMaxHours": 40
+    },
+    {
+      "id": "staff_1792163035426",
+      "name": "游宜臻",
+      "role": "工讀生",
+      "wage": 200,
+      "maxHours": 40,
+      "color": "#96d35f",
+      "offPref": "none",
+      "leaveQuota": 8,
+      "periodMaxHours": 40
+    },
+    {
+      "id": "staff_1792249659974",
+      "name": "陳姣嬋",
+      "role": "工讀生",
+      "wage": 200,
+      "maxHours": 40,
+      "color": "#6366f1",
+      "offPref": "none",
+      "leaveQuota": 8,
+      "periodMaxHours": 160
+    },
+    {
+      "id": "staff_1792249704287",
+      "name": "陳玉珮",
+      "role": "工讀生",
+      "wage": 200,
+      "maxHours": 40,
+      "color": "#feb43f",
+      "offPref": "none",
+      "leaveQuota": 8,
+      "periodMaxHours": 40
+    }
+  ],
+  "shifts": [
+    {
+      "id": "shift_off",
+      "name": "休假",
+      "code": "休",
+      "enCode": "H",
+      "start": "00:00",
+      "end": "00:00",
+      "hours": 0,
+      "color": "#ffffff",
+      "textColor": "#ef4444",
+      "bgTransparent": true,
+      "targetStaff": 0,
+      "isLeave": true
+    },
+    {
+      "id": "shift_1789744720001",
+      "name": "A",
+      "code": "A",
+      "enCode": "A",
+      "start": "09:30",
+      "end": "18:30",
+      "hours": 8,
+      "color": "#ffffff",
+      "textColor": "#000000",
+      "bgTransparent": true,
+      "targetStaff": 1,
+      "isLeave": false
+    },
+    {
+      "id": "shift_1789744781872",
+      "name": "B",
+      "code": "B",
+      "enCode": "B",
+      "start": "11:00",
+      "end": "20:00",
+      "hours": 8,
+      "color": "#ffffff",
+      "textColor": "#000000",
+      "bgTransparent": true,
+      "targetStaff": 1,
+      "isLeave": false
+    },
+    {
+      "id": "shift_1789744831308",
+      "name": "C",
+      "code": "C",
+      "enCode": "C",
+      "start": "09:30",
+      "end": "20:00",
+      "hours": 9.5,
+      "color": "#ffffff",
+      "textColor": "#000000",
+      "bgTransparent": true,
+      "targetStaff": 1,
+      "isLeave": false
+    },
+    {
+      "id": "shift_1792247726553",
+      "name": "打菜",
+      "code": "D",
+      "enCode": "D",
+      "start": "10:00",
+      "end": "19:00",
+      "hours": 8,
+      "color": "#ffffff",
+      "textColor": "#000000",
+      "bgTransparent": true,
+      "targetStaff": 1,
+      "isLeave": false
+    },
+    {
+      "id": "shift_1792249605127",
+      "name": "三阿姨",
+      "code": "3",
+      "enCode": "3",
+      "start": "10:30",
+      "end": "13:00",
+      "hours": 2.5,
+      "color": "#ffffff",
+      "textColor": "#000000",
+      "bgTransparent": true,
+      "targetStaff": 1,
+      "isLeave": false
+    },
+    {
+      "id": "shift_1792302074861",
+      "name": "排休",
+      "code": "排",
+      "enCode": "H",
+      "start": "09:00",
+      "end": "09:00",
+      "hours": 0,
+      "color": "#ffffff",
+      "textColor": "#0042a9",
+      "bgTransparent": true,
+      "targetStaff": 2,
+      "isLeave": true
+    }
+  ],
+  "roles": [
+    "店長",
+    "正職",
+    "工讀生",
+    "老闆"
+  ],
+  "rules": {
+    "maxDailyShifts": 1,
+    "maxConsecutiveDays": 6,
+    "maxDailyHours": 12,
+    "periodMaxHours": 160,
+    "monthlyLeaveQuota": 8,
+    "weekdayShiftMin": {},
+    "holidayShiftMin": {},
+    "headcount": {
+      "weekdayMin": 3,
+      "weekendMin": 4,
+      "customDates": []
+    }
+  },
+  "antiPairs": [],
+  "roleRestrictions": [],
+  "shiftFairness": [],
+  "otMultiplier": 1.34,
+  "shiftDisplayLang": "zh",
+  "schedules": {}
+};
 
-  // --- Default Shifts Configuration (簡化：留中文名稱、中文代碼、英文代碼、假別標記、字體顏色與透明色塊) ---
-  const DEFAULT_SHIFTS = [
-    { id: 'shift_morning', name: '早班', code: '早', enCode: 'M', start: '08:00', end: '16:30', hours: 8, color: '#10b981', textColor: '#ffffff', bgTransparent: false, targetStaff: 2, isLeave: false },
-    { id: 'shift_middle', name: '中班', code: '中', enCode: 'C', start: '12:00', end: '20:30', hours: 8, color: '#f59e0b', textColor: '#ffffff', bgTransparent: false, targetStaff: 1, isLeave: false },
-    { id: 'shift_evening', name: '晚班', code: '晚', enCode: 'E', start: '16:00', end: '00:30', hours: 8, color: '#8b5cf6', textColor: '#ffffff', bgTransparent: false, targetStaff: 2, isLeave: false },
-    { id: 'shift_night', name: '大夜班', code: '夜', enCode: 'N', start: '00:00', end: '08:30', hours: 8, color: '#3b82f6', textColor: '#ffffff', bgTransparent: false, targetStaff: 1, isLeave: false },
-    { id: 'shift_parttime', name: '支援短班', code: '短', enCode: 'P', start: '18:00', end: '22:00', hours: 4, color: '#06b6d4', textColor: '#ffffff', bgTransparent: false, targetStaff: 1, isLeave: false },
-    { id: 'shift_off', name: '休假', code: '休', enCode: 'OFF', start: '00:00', end: '00:00', hours: 0, color: '#ffffff', textColor: '#ef4444', bgTransparent: true, targetStaff: 0, isLeave: true },
-    { id: 'shift_personal', name: '事假', code: '事', enCode: 'L', start: '-', end: '-', hours: 0, color: '#f97316', textColor: '#ffffff', bgTransparent: false, targetStaff: 0, isLeave: true },
-    { id: 'shift_sick', name: '病假', code: '病', enCode: 'S', start: '-', end: '-', hours: 0, color: '#ef4444', textColor: '#ffffff', bgTransparent: false, targetStaff: 0, isLeave: true }
-  ];
+  // --- Default Roles (從 2026-10-18 範本設定) ---
+  const DEFAULT_ROLES = (DEFAULT_TEMPLATE.roles && DEFAULT_TEMPLATE.roles.length > 0)
+    ? DEFAULT_TEMPLATE.roles
+    : ['店長', '正職', '工讀生', '老闆'];
 
-  // --- Default Staff Roster ---
-  const DEFAULT_STAFF = [
-    { id: 'staff_1', name: '林雅婷', role: '店長', wage: 280, maxHours: 40, color: '#6366f1', offPref: '0', leaveQuota: 8 },
-    { id: 'staff_2', name: '張志豪', role: '正職', wage: 230, maxHours: 40, color: '#10b981', offPref: '1', leaveQuota: 8 },
-    { id: 'staff_3', name: '陳美玲', role: '正職', wage: 210, maxHours: 40, color: '#ec4899', offPref: '2', leaveQuota: 8 },
-    { id: 'staff_4', name: '王大明', role: '正職', wage: 200, maxHours: 40, color: '#f59e0b', offPref: '3', leaveQuota: 8 },
-    { id: 'staff_5', name: '許家豪', role: '工讀生', wage: 195, maxHours: 28, color: '#06b6d4', offPref: '4', leaveQuota: 8 },
-    { id: 'staff_6', name: '柯怡君', role: '工讀生', wage: 195, maxHours: 24, color: '#a855f7', offPref: '5', leaveQuota: 8 },
-    { id: 'staff_7', name: '黃冠宇', role: '工讀生', wage: 190, maxHours: 20, color: '#14b8a6', offPref: 'none', leaveQuota: 8 }
-  ];
+  // --- Default Shifts Configuration (從 2026-10-18 範本設定) ---
+  const DEFAULT_SHIFTS = DEFAULT_TEMPLATE.shifts;
+
+  // --- Default Staff Roster (從 2026-10-18 範本設定) ---
+  const DEFAULT_STAFF = DEFAULT_TEMPLATE.staff;
 
   const DAY_NAMES_ZH = ['週日', '週一', '週二', '週三', '週四', '週五', '週六'];
   const DAY_NAMES_FULL_ZH = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
@@ -80,14 +285,14 @@
       holidayShiftMin: {}, // { shiftId: count }
       headcount: {
         weekdayMin: 3,
-        weekendMin: 2,
+        weekendMin: 4,
         customDates: [] // Array of { date: 'YYYY-MM-DD', min: number }
       }
     },
     // Auto-Schedule Advanced Rules
     antiPairs: [], // Array of [staffIdA, staffIdB]
     roleRestrictions: [], // Array of { role: string, shiftId: string }
-    shiftFairness: ['shift_morning', 'shift_evening', 'shift_middle'], // Shift IDs that must be balanced
+    shiftFairness: [], // Shift IDs that must be balanced
     activeTarget: null
   };
 
@@ -301,7 +506,7 @@ function applyParsedState(parsed) {
   
   state.antiPairs = parsed.antiPairs || [];
   state.roleRestrictions = parsed.roleRestrictions || [];
-  state.shiftFairness = parsed.shiftFairness || ['shift_morning', 'shift_evening', 'shift_middle'];
+  state.shiftFairness = Array.isArray(parsed.shiftFairness) ? parsed.shiftFairness : [];
   state.customShiftRequirements = parsed.customShiftRequirements || [];
 
   // 確保每位員工都有本月應休天數 (leaveQuota)
@@ -309,23 +514,9 @@ function applyParsedState(parsed) {
     if (typeof s.leaveQuota !== 'number') s.leaveQuota = 8;
   });
 
-  // 確保預設的 'shift_off'（休假）班別正確設定
-  let offShift = state.shifts.find(s => s.id === 'shift_off');
-  if (!offShift) {
-    offShift = { id: 'shift_off', name: '休假', code: '休', enCode: '休', start: '00:00', end: '00:00', hours: 0, color: '#ffffff', textColor: '#ef4444', bgTransparent: true, targetStaff: 0, isLeave: true };
-    state.shifts.push(offShift);
-  } else if (offShift.name === '例休') {
-    offShift.name = '休假';
-    offShift.code = '休';
-    offShift.enCode = '休';
-    offShift.start = '00:00';
-    offShift.end = '00:00';
-    offShift.hours = 0;
-    offShift.targetStaff = 0;
-    offShift.color = '#ffffff';
-    offShift.textColor = '#ef4444';
-    offShift.bgTransparent = true;
-    offShift.isLeave = true;
+  // 若完全沒有任何班別，加入預設休假班別
+  if (state.shifts.length === 0) {
+    state.shifts.push({ id: 'shift_off', name: '休假', code: '休', enCode: '休', start: '00:00', end: '00:00', hours: 0, color: '#ffffff', textColor: '#ef4444', bgTransparent: true, targetStaff: 0, isLeave: true });
   }
 
   // 班別資料正規化：確保假別標記、字體顏色、透明背景與單字元代碼符合規範
@@ -371,10 +562,18 @@ async function loadState() {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
-        applyParsedState(JSON.parse(saved));
-        showToast('⚠️ 網路連線異常，已載入本地暫存資料', 'warning');
+        const parsed = JSON.parse(saved);
+        // 若本地儲存仍是舊版示範假資料（如林雅婷或舊預設班別），自動升級載入 2026-10-18 範本
+        const hasLegacyDemo = parsed.staff && parsed.staff.some(s => s.name === '林雅婷' || s.id === 'staff_1');
+        if (hasLegacyDemo) {
+          initDefaultDemoData();
+          showToast('已自動升級載入 2026-10-18 排班範本！', 'success');
+        } else {
+          applyParsedState(parsed);
+          showToast('⚠️ 網路連線異常，已載入本地暫存資料', 'warning');
+        }
       } else {
-        initDefaultDemoData(); // 若兩者皆無則載入預設示範資料
+        initDefaultDemoData(); // 若兩者皆無則載入預設 2026-10-18 範本資料
       }
     } catch (e) {
       console.warn('載入本地狀態失敗，改用預設資料:', e);
@@ -449,15 +648,93 @@ function saveState() {
   }
 }
 
-  function initDefaultDemoData() {
-    state.staff = JSON.parse(JSON.stringify(DEFAULT_STAFF));
-    state.shifts = JSON.parse(JSON.stringify(DEFAULT_SHIFTS));
-    state.roles = [...DEFAULT_ROLES];
+  /**
+   * 當前週期班別隨機，其他週期班別清空
+   */
+  function generateRandomScheduleForCurrentPeriod() {
+    // 1. 其他週期班別清空
     state.schedules = {};
-    state.periodMode = 'month';
-    state.shiftDisplayLang = 'zh';
-    state.otMultiplier = 1.34;
-    state.rules = {
+
+    const periodDays = getPeriodDays();
+    if (!periodDays || periodDays.length === 0 || !state.staff || state.staff.length === 0) return;
+
+    const workShifts = state.shifts.filter(s => !s.isLeave && s.hours > 0);
+    const offShift = state.shifts.find(s => s.id === 'shift_off') || { id: 'shift_off' };
+
+    const streaks = {};
+    const offCounts = {};
+    state.staff.forEach(s => {
+      streaks[s.id] = 0;
+      offCounts[s.id] = 0;
+    });
+
+    // 每天目標上班人數（以 8 人名冊而言，平日 5~6 人、假日 5~6 人上班，使每人月休均衡維持在 8 天左右）
+    const targetWorking = Math.max(1, Math.min(state.staff.length, Math.round(state.staff.length * 0.75)));
+    const minWeekday = (state.rules && state.rules.headcount && state.rules.headcount.weekdayMin) || 3;
+    const minWeekend = (state.rules && state.rules.headcount && state.rules.headcount.weekendMin) || 4;
+    const maxConsecutive = (state.rules && state.rules.maxConsecutiveDays) || 6;
+
+    periodDays.forEach(d => {
+      const dateStr = formatDateIso(d);
+      const isWeekend = d.getDay() === 0 || d.getDay() === 6;
+      const minStaff = isWeekend ? minWeekend : minWeekday;
+
+      // 檢查休假偏好與連勤上限
+      const mustOff = [];
+      const canWork = [];
+
+      state.staff.forEach(staff => {
+        if (streaks[staff.id] >= maxConsecutive) {
+          // 連勤已滿法定上限，強制安排休假
+          mustOff.push(staff);
+        } else if (staff.offPref !== 'none' && parseInt(staff.offPref, 10) === d.getDay()) {
+          // 固定休假偏好
+          mustOff.push(staff);
+        } else {
+          canWork.push(staff);
+        }
+      });
+
+      // 依休假次數排序：休假次數較多者優先出勤，休假較少者有機會排休
+      canWork.sort((a, b) => {
+        const diff = offCounts[b.id] - offCounts[a.id];
+        return diff !== 0 ? diff : (Math.random() - 0.5);
+      });
+
+      const numWorking = Math.min(canWork.length, Math.max(minStaff, targetWorking));
+      const working = canWork.slice(0, numWorking);
+      const offToday = mustOff.concat(canWork.slice(numWorking));
+
+      // 安排今日休假
+      offToday.forEach(staff => {
+        state.schedules[`${staff.id}_${dateStr}`] = { shiftId: offShift.id, otHours: 0 };
+        streaks[staff.id] = 0;
+        offCounts[staff.id] = (offCounts[staff.id] || 0) + 1;
+      });
+
+      // 隨機打散出勤同仁並隨機指派可工作班別
+      const shuffledWorking = [...working].sort(() => Math.random() - 0.5);
+      shuffledWorking.forEach((staff, idx) => {
+        if (workShifts.length > 0) {
+          const shift = workShifts[idx % workShifts.length];
+          state.schedules[`${staff.id}_${dateStr}`] = { shiftId: shift.id, otHours: 0 };
+        } else {
+          state.schedules[`${staff.id}_${dateStr}`] = { shiftId: offShift.id, otHours: 0 };
+        }
+        streaks[staff.id] = (streaks[staff.id] || 0) + 1;
+      });
+    });
+  }
+
+  function initDefaultDemoData() {
+    // 1. 範本只針對人員、班別設定復原
+    state.staff = JSON.parse(JSON.stringify(DEFAULT_TEMPLATE.staff));
+    state.shifts = JSON.parse(JSON.stringify(DEFAULT_TEMPLATE.shifts));
+    state.roles = (DEFAULT_TEMPLATE.roles && DEFAULT_TEMPLATE.roles.length > 0)
+      ? [...DEFAULT_TEMPLATE.roles]
+      : ['店長', '正職', '工讀生', '老闆'];
+
+    state.rules = JSON.parse(JSON.stringify(DEFAULT_TEMPLATE.rules || {
       maxDailyShifts: 1,
       maxConsecutiveDays: 6,
       maxDailyHours: 12,
@@ -465,43 +742,33 @@ function saveState() {
       monthlyLeaveQuota: 8,
       weekdayShiftMin: {},
       holidayShiftMin: {},
-      headcount: { weekdayMin: 3, weekendMin: 2, customDates: [] }
-    };
-    state.antiPairs = [];
-    state.roleRestrictions = [];
-    state.shiftFairness = ['shift_morning', 'shift_evening', 'shift_middle'];
+      headcount: { weekdayMin: 3, weekendMin: 4, customDates: [] }
+    }));
+    state.antiPairs = [...(DEFAULT_TEMPLATE.antiPairs || [])];
+    state.roleRestrictions = JSON.parse(JSON.stringify(DEFAULT_TEMPLATE.roleRestrictions || []));
+    state.shiftFairness = [...(DEFAULT_TEMPLATE.shiftFairness || [])];
+    state.otMultiplier = typeof DEFAULT_TEMPLATE.otMultiplier === 'number' ? DEFAULT_TEMPLATE.otMultiplier : 1.34;
+    state.shiftDisplayLang = DEFAULT_TEMPLATE.shiftDisplayLang || 'zh';
 
-    const range = calculatePeriodRange('month', new Date());
+    // 規範化班別資料
+    state.shifts.forEach(s => {
+      if (typeof s.isLeave !== 'boolean') s.isLeave = s.id === 'shift_off' || s.hours === 0;
+      if (!s.textColor) s.textColor = '#ffffff';
+      if (typeof s.bgTransparent !== 'boolean') s.bgTransparent = false;
+      if (s.code) s.code = s.code.slice(0, 1);
+      if (s.enCode) s.enCode = s.enCode.slice(0, 1);
+    });
+
+    state.staff.forEach(s => {
+      if (typeof s.leaveQuota !== 'number') s.leaveQuota = 8;
+    });
+
+    // 2. 當前週期班別隨機，其他週期班別清空
+    const range = calculatePeriodRange(state.periodMode || 'month', new Date());
     state.periodStart = range.start;
     state.periodEnd = range.end;
 
-    const days = getPeriodDays();
-    const shiftCycle = [
-      ['shift_morning', 'shift_morning', 'shift_morning', 'shift_morning', 'shift_morning', 'shift_off', 'shift_off'],
-      ['shift_off', 'shift_middle', 'shift_middle', 'shift_middle', 'shift_middle', 'shift_middle', 'shift_off'],
-      ['shift_morning', 'shift_off', 'shift_morning', 'shift_morning', 'shift_evening', 'shift_evening', 'shift_off'],
-      ['shift_evening', 'shift_evening', 'shift_off', 'shift_evening', 'shift_morning', 'shift_morning', 'shift_off'],
-      ['shift_parttime', 'shift_parttime', 'shift_parttime', 'shift_off', 'shift_parttime', 'shift_parttime', 'shift_off'],
-      ['shift_evening', 'shift_evening', 'shift_evening', 'shift_evening', 'shift_off', 'shift_evening', 'shift_off'],
-      ['shift_off', 'shift_off', 'shift_off', 'shift_night', 'shift_night', 'shift_night', 'shift_night']
-    ];
-
-    state.staff.forEach((staff, staffIdx) => {
-      const cycle = shiftCycle[staffIdx % shiftCycle.length];
-      days.forEach((d, dayIdx) => {
-        const dateStr = formatDateIso(d);
-        const shiftId = cycle[dayIdx % cycle.length];
-        if (shiftId) {
-          let ot = 0;
-          let el = 0;
-          // 示範資料加入合理的加班與早退範例，便於檢視效果
-          if (staffIdx === 0 && dayIdx === 2 && shiftId !== 'shift_off') ot = 2;
-          if (staffIdx === 1 && dayIdx === 4 && shiftId !== 'shift_off') el = 1;
-          if (staffIdx === 4 && dayIdx === 1 && shiftId !== 'shift_off') ot = 1;
-          state.schedules[`${staff.id}_${dateStr}`] = { shiftId, otHours: ot, earlyLeaveHours: el };
-        }
-      });
-    });
+    generateRandomScheduleForCurrentPeriod();
 
     saveState();
   }
@@ -760,6 +1027,44 @@ function saveState() {
     return `${shift.name} [${shift.code}]`;
   }
 
+  // 取得班別顯示樣式：勾選底色透明時，黑字改白底、白字改黑底；未勾選則完全依據使用者設定
+  function getShiftPillStyle(shift) {
+    if (!shift) return { bg: 'transparent', color: 'inherit', border: 'none', isTransparent: false };
+    const textColor = shift.textColor || '#ffffff';
+
+    if (shift.bgTransparent) {
+      // 所有的班別當勾選底色透明時，觀看時黑色字體背景改白色，白色字體背景改黑色。
+      let isDarkText = false;
+      if (textColor.startsWith('#')) {
+        const hex = textColor.replace('#', '');
+        const r = parseInt(hex.length === 3 ? hex[0] + hex[0] : hex.slice(0, 2), 16) || 0;
+        const g = parseInt(hex.length === 3 ? hex[1] + hex[1] : hex.slice(2, 4), 16) || 0;
+        const b = parseInt(hex.length === 3 ? hex[2] + hex[2] : hex.slice(4, 6), 16) || 0;
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        isDarkText = brightness < 128;
+      } else if (textColor.toLowerCase() === 'black') {
+        isDarkText = true;
+      }
+
+      const bg = isDarkText ? '#ffffff' : '#000000';
+      const border = isDarkText ? '1px solid rgba(0, 0, 0, 0.2)' : '1px solid rgba(255, 255, 255, 0.3)';
+      return {
+        bg,
+        color: textColor, // 依照設定
+        border,
+        isTransparent: true
+      };
+    } else {
+      // 其他狀況就依照我的設定 (背景為 shift.color，文字為 shift.textColor)
+      return {
+        bg: shift.color || '#10b981',
+        color: textColor, // 依照設定
+        border: 'none',
+        isTransparent: false
+      };
+    }
+  }
+
   // ==========================================================================
   // VIEW 1: Mobile-Friendly Day Carousel & Cards Mode
   // ==========================================================================
@@ -902,14 +1207,17 @@ function saveState() {
           const elText = (entry && entry.earlyLeaveHours > 0) ? `-${entry.earlyLeaveHours}h` : '';
           const shiftDisplayName = (state.shiftDisplayLang === 'en') ? (shift.enCode || shift.code || shift.name) : shift.name;
 
+          const pillStyleObj = getShiftPillStyle(shift);
+          const shiftCardStyle = `background:${pillStyleObj.bg};color:${pillStyleObj.color};border:${pillStyleObj.border};`;
+
           card.innerHTML = `
             <div class="staff-mini-card-avatar" style="background:${staff.color};border-color:${staff.color};">
               ${staff.name.slice(0, 1)}
             </div>
             <div class="staff-mini-card-name" title="${escapeHtml(staff.name)}">${escapeHtml(staff.name)}</div>
             <div class="staff-mini-card-role">${escapeHtml(staff.role)}</div>
-            <div class="staff-mini-card-shift" style="background:${shift.color};color:${shift.textColor || '#ffffff'};" title="${escapeHtml(shift.name)}">
-              <span>${escapeHtml(shiftDisplayName)}</span>
+            <div class="staff-mini-card-shift" style="${shiftCardStyle}" title="${escapeHtml(shift.name)}">
+              <span style="color:${pillStyleObj.color};">${escapeHtml(shiftDisplayName)}</span>
               ${otText ? `<span class="ot-badge" style="margin-left:2px;font-size:0.65rem;">${otText}</span>` : ''}
               ${elText ? `<span class="ot-badge" style="margin-left:2px;font-size:0.65rem;background:rgba(239,68,68,0.3);color:#fee2e2;">${elText}</span>` : ''}
             </div>
@@ -994,11 +1302,9 @@ function saveState() {
       workShifts.forEach(shift => {
         const code = getShiftDisplayShort(shift);
         const count = shiftCounts[shift.id] || 0;
-        const bg = shift.bgTransparent ? 'var(--bg-secondary)' : shift.color;
-        const fg = shift.textColor || '#ffffff';
-        const borderStyle = shift.bgTransparent ? `border:1px solid ${shift.color || 'var(--border-color)'};` : '';
+        const pStyle = getShiftPillStyle(shift);
         badgesHtml += `
-          <span class="staff-shift-count-badge" style="background:${bg};color:${fg};${borderStyle}">
+          <span class="staff-shift-count-badge" style="background:${pStyle.bg};color:${pStyle.color};border:${pStyle.border};">
             ${escapeHtml(code)} ${count}
           </span>
         `;
@@ -1061,19 +1367,19 @@ function saveState() {
         const pill = document.createElement('div');
         pill.className = 'staff-day-pill';
         if (shift) {
-          if (shift.bgTransparent) {
+          const pillStyle = getShiftPillStyle(shift);
+          pill.style.backgroundColor = pillStyle.bg;
+          pill.style.borderColor = pillStyle.border;
+          pill.style.color = pillStyle.color;
+          if (pillStyle.isTransparent) {
             pill.classList.add('is-transparent');
-            pill.style.backgroundColor = 'transparent';
-          } else {
-            pill.style.backgroundColor = shift.color;
-            pill.style.borderColor = 'transparent';
           }
           const codeText = getShiftDisplayShort(shift);
           const otText = entry.otHours > 0 ? `<span class="ot-badge">+${entry.otHours}h</span>` : '';
           const elText = (entry.earlyLeaveHours || 0) > 0 ? `<span class="ot-badge" style="background:rgba(239,68,68,0.25);color:#ef4444;">-${entry.earlyLeaveHours}h</span>` : '';
           pill.innerHTML = `
-            <span class="staff-day-pill-name" style="font-size:0.62rem;white-space:nowrap;">${dayTitle}</span>
-            <span class="staff-day-pill-code" style="color:${shift.textColor || '#ffffff'};font-weight:800;">${codeText} ${otText}${elText}</span>
+            <span class="staff-day-pill-name" style="font-size:0.62rem;white-space:nowrap;color:${pillStyle.color};opacity:0.85;">${dayTitle}</span>
+            <span class="staff-day-pill-code" style="color:${pillStyle.color};font-weight:800;">${codeText} ${otText}${elText}</span>
           `;
         } else {
           pill.innerHTML = `
@@ -1164,16 +1470,14 @@ function saveState() {
           const fullTitle = getShiftDisplayTitle(shift);
           const otBadge = entry.otHours > 0 ? `<span class="ot-badge">+${entry.otHours}</span>` : '';
           const elBadge = (entry.earlyLeaveHours || 0) > 0 ? `<span class="ot-badge" style="background:rgba(239,68,68,0.25);color:#ef4444;">-${entry.earlyLeaveHours}</span>` : '';
-          const isTransparent = !!shift.bgTransparent;
-          const pillClass = isTransparent ? 'shift-pill is-transparent' : 'shift-pill';
-          const pillStyle = isTransparent
-            ? (shift.textColor ? `color:${shift.textColor};` : '')
-            : `background:${shift.color};color:${shift.textColor || '#ffffff'};`;
+          const pStyle = getShiftPillStyle(shift);
+          const pillClass = pStyle.isTransparent ? 'shift-pill is-transparent' : 'shift-pill';
+          const pillStyleStr = `background:${pStyle.bg};color:${pStyle.color};border:${pStyle.border};`;
 
           slot.innerHTML = `
-            <div class="${pillClass}" style="${pillStyle}" title="${escapeHtml(fullTitle)} ${shift.start}~${shift.end}${entry.otHours > 0 ? ` (加班+${entry.otHours}h)` : ''}${(entry.earlyLeaveHours||0) > 0 ? ` (早退-${entry.earlyLeaveHours}h)` : ''}">
-              <div class="shift-pill-title">
-                <span class="shift-code-text">${shortCode}</span>
+            <div class="${pillClass}" style="${pillStyleStr}" title="${escapeHtml(fullTitle)} ${shift.start}~${shift.end}${entry.otHours > 0 ? ` (加班+${entry.otHours}h)` : ''}${(entry.earlyLeaveHours||0) > 0 ? ` (早退-${entry.earlyLeaveHours}h)` : ''}">
+              <div class="shift-pill-title" style="color:${pStyle.color};">
+                <span class="shift-code-text" style="color:${pStyle.color};">${shortCode}</span>
                 ${otBadge}${elBadge}
               </div>
             </div>
@@ -1271,11 +1575,12 @@ function saveState() {
       const timeText = (shift.start && shift.end && shift.start !== '-')
         ? `${shift.start} ~ ${shift.end}`
         : (shift.start || '-');
+      const pStyle = getShiftPillStyle(shift);
 
       chip.innerHTML = `
-        <span class="legend-color-dot" style="background:${shift.color};"></span>
-        <span class="legend-name">${escapeHtml(shift.name)} [${escapeHtml(code)}]</span>
-        <span class="legend-time" style="font-size:0.75rem;color:var(--text-muted);">${escapeHtml(timeText)}</span>
+        <span class="legend-color-dot" style="background:${pStyle.bg};border:${pStyle.border};"></span>
+        <span class="legend-name" style="padding:1px 6px;border-radius:4px;background:${pStyle.bg};color:${pStyle.color};border:${pStyle.border};font-weight:700;">${escapeHtml(shift.name)} [${escapeHtml(code)}]</span>
+        <span class="legend-time">${escapeHtml(timeText)}</span>
       `;
       elLegend.appendChild(chip);
     });
@@ -1309,11 +1614,10 @@ function saveState() {
     state.shifts.forEach(shift => {
       const th = document.createElement('th');
       th.className = 'col-shift';
-      const bg = shift.bgTransparent ? 'transparent' : shift.color;
-      const fg = shift.textColor || '#ffffff';
+      const pStyle = getShiftPillStyle(shift);
       const shiftDisplayName = (state.shiftDisplayLang === 'en') ? (shift.enCode || shift.code || shift.name) : shift.name;
       th.innerHTML = `
-        <span style="display:inline-block;padding:0.18rem 0.5rem;border-radius:4px;background:${bg};color:${fg};${shift.bgTransparent ? 'border:1px solid ' + shift.color : ''};font-size:0.75rem;white-space:nowrap;">
+        <span style="display:inline-block;padding:0.18rem 0.5rem;border-radius:4px;background:${pStyle.bg};color:${pStyle.color};border:${pStyle.border};font-size:0.75rem;font-weight:700;white-space:nowrap;">
           ${escapeHtml(shiftDisplayName)}
         </span>
       `;
@@ -1623,24 +1927,28 @@ function saveState() {
 
     if (elDrawerShiftsList) {
       elDrawerShiftsList.innerHTML = '';
-      const workShifts = state.shifts.filter(s => s.id !== 'shift_off');
-
-      workShifts.forEach(shift => {
+      state.shifts.forEach(shift => {
         const item = document.createElement('button');
         item.type = 'button';
         item.className = 'drawer-shift-item';
-        item.style.backgroundColor = shift.color;
+
+        const pStyle = getShiftPillStyle(shift);
+        item.style.backgroundColor = pStyle.bg;
+        item.style.color = pStyle.color;
+        item.style.border = pStyle.border;
 
         const codeText = getShiftDisplayShort(shift);
         const nameText = (state.shiftDisplayLang === 'en') ? (shift.enCode || shift.name) : shift.name;
 
         item.innerHTML = `
           <div class="drawer-shift-title">
-            <span style="padding:0.1rem 0.45rem;background:rgba(0,0,0,0.25);border-radius:4px;font-size:0.85rem;">${codeText}</span>
-            <span>${nameText}</span>
+            <span style="padding:0.15rem 0.5rem;background:rgba(0,0,0,0.18);border-radius:4px;font-size:0.85rem;color:${pStyle.color};font-weight:800;">${codeText}</span>
+            <span style="display:inline-flex;align-items:center;gap:4px;color:${pStyle.color};font-weight:700;">
+              ${nameText}
+            </span>
           </div>
-          <div class="drawer-shift-time">
-            ${shift.start}-${shift.end} (${shift.hours}h)
+          <div class="drawer-shift-time" style="color:${pStyle.color};opacity:0.85;">
+            ${shift.start && shift.start !== '-' ? `${shift.start}-${shift.end}` : ''} (${shift.hours}h)
           </div>
         `;
 
@@ -1655,16 +1963,23 @@ function saveState() {
       });
     }
 
-    if (elBottomSheetBackdrop) elBottomSheetBackdrop.classList.add('open');
+    if (elBottomSheetBackdrop) {
+      elBottomSheetBackdrop.classList.add('open');
+      document.body.classList.add('modal-open');
+    }
   }
 
   function closeBottomSheet() {
-    if (elBottomSheetBackdrop) elBottomSheetBackdrop.classList.remove('open');
+    if (elBottomSheetBackdrop) {
+      elBottomSheetBackdrop.classList.remove('open');
+      const hasOther = document.querySelector('.modal-backdrop.open');
+      if (!hasOther) document.body.classList.remove('modal-open');
+    }
     state.activeTarget = null;
   }
 
   // ==========================================================================
-  // Desktop Popover (Shift Picker with Overtime Input)
+  // Desktop Popover (Shift Picker with Overtime Input & Confirm Button)
   // ==========================================================================
   function openShiftPicker(staffId, dateStr, anchorEl) {
     if (!elShiftPicker) return;
@@ -1674,30 +1989,80 @@ function saveState() {
     const initialOt = (currentEntry && currentEntry.otHours > 0) ? currentEntry.otHours : '';
     const initialEl = (currentEntry && currentEntry.earlyLeaveHours > 0) ? currentEntry.earlyLeaveHours : '';
 
-    // 1a. Overtime input row in popover
+    function doSaveOtEl() {
+      const inputOt = document.getElementById('popover-input-ot');
+      const inputEl = document.getElementById('popover-input-el');
+      const otVal = (inputOt && inputOt.value !== '') ? (parseFloat(inputOt.value) || 0) : 0;
+      const elVal = (inputEl && inputEl.value !== '') ? (parseFloat(inputEl.value) || 0) : 0;
+      let existing = getScheduleEntry(staffId, dateStr);
+      if (!existing || !existing.shiftId) {
+        const defaultShift = state.shifts.find(s => !s.isLeave && s.hours > 0) || state.shifts[0];
+        if (defaultShift) {
+          assignShift(staffId, dateStr, defaultShift.id, otVal, elVal);
+        } else {
+          showToast('請先新增並選擇班別', 'warning');
+          return;
+        }
+      } else {
+        existing.otHours = otVal;
+        existing.earlyLeaveHours = elVal;
+        saveState();
+        renderAll();
+      }
+      showToast(`已儲存：加班 ${otVal}h / 早退 ${elVal}h`, 'success');
+      closeShiftPicker();
+    }
+
+    // 1a. Overtime input row in popover with dedicated save button
     const otRow = document.createElement('div');
     otRow.className = 'popover-ot-row';
     otRow.innerHTML = `
-      <span>⏰ 當日加班：</span>
-      <div style="display:flex;align-items:center;gap:3px;">
-        <input type="number" id="popover-input-ot" class="popover-ot-input" value="${initialOt}" min="0" max="12" step="0.5" placeholder="">
+      <span style="font-weight:600;font-size:0.8rem;">⏰ 當日加班：</span>
+      <div style="display:flex;align-items:center;gap:4px;">
+        <input type="number" id="popover-input-ot" class="popover-ot-input" value="${initialOt}" min="0" max="12" step="0.5" placeholder="0" style="width:48px;text-align:center;padding:2px 4px;">
         <span>h</span>
+        <button type="button" class="btn btn-primary" id="popover-btn-save-ot" style="padding:3px 8px;font-size:0.75rem;white-space:nowrap;font-weight:700;">儲存</button>
       </div>
     `;
     elShiftPicker.appendChild(otRow);
 
-    // 1b. Early leave input row in popover
+    // 1b. Early leave input row in popover with dedicated save button
     const elRow = document.createElement('div');
     elRow.className = 'popover-ot-row';
     elRow.style.borderTop = '1px dashed var(--border-color)';
     elRow.innerHTML = `
-      <span style="color:var(--accent-danger);">🚪 當日早退：</span>
-      <div style="display:flex;align-items:center;gap:3px;">
-        <input type="number" id="popover-input-el" class="popover-ot-input" value="${initialEl}" min="0" max="12" step="0.5" placeholder="">
+      <span style="color:var(--accent-danger);font-weight:600;font-size:0.8rem;">🚪 當日早退：</span>
+      <div style="display:flex;align-items:center;gap:4px;">
+        <input type="number" id="popover-input-el" class="popover-ot-input" value="${initialEl}" min="0" max="12" step="0.5" placeholder="0" style="width:48px;text-align:center;padding:2px 4px;">
         <span>h</span>
+        <button type="button" class="btn btn-primary" id="popover-btn-save-el" style="padding:3px 8px;font-size:0.75rem;white-space:nowrap;font-weight:700;">儲存</button>
       </div>
     `;
     elShiftPicker.appendChild(elRow);
+
+    otRow.querySelector('#popover-btn-save-ot').addEventListener('click', (e) => {
+      e.stopPropagation();
+      doSaveOtEl();
+    });
+
+    elRow.querySelector('#popover-btn-save-el').addEventListener('click', (e) => {
+      e.stopPropagation();
+      doSaveOtEl();
+    });
+
+    otRow.querySelector('#popover-input-ot').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        doSaveOtEl();
+      }
+    });
+
+    elRow.querySelector('#popover-input-el').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        doSaveOtEl();
+      }
+    });
 
     // 2. Shift Options List
     state.shifts.forEach(shift => {
@@ -1706,13 +2071,14 @@ function saveState() {
 
       const shortCode = getShiftDisplayShort(shift);
       const titleText = getShiftDisplayTitle(shift);
+      const pStyle = getShiftPillStyle(shift);
 
       item.innerHTML = `
         <span style="display:flex;align-items:center;gap:0.4rem;">
-          <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${shift.color};"></span>
-          <span>${escapeHtml(titleText)}</span>
+          <span style="display:inline-block;padding:1px 5px;border-radius:3px;background:${pStyle.bg};color:${pStyle.color};border:${pStyle.border};font-size:0.72rem;font-weight:800;line-height:1.2;">${shortCode}</span>
+          <span style="font-weight:600;">${escapeHtml(titleText)}</span>
         </span>
-        <span style="font-size:0.75rem;opacity:0.7;">${shift.hours > 0 ? `${shift.hours}h` : '休'}</span>
+        <span style="font-size:0.75rem;opacity:0.8;">${shift.hours > 0 ? `${shift.hours}h` : '休'}</span>
       `;
 
       item.addEventListener('click', () => {
@@ -2831,7 +3197,7 @@ function saveState() {
               <span class="staff-role-badge">${escapeHtml(staff.role)}</span>
             </div>
             <div style="font-size:0.75rem;color:var(--text-muted);">
-              時薪 NT$${staff.wage} ・ 週基準 ${staff.maxHours}h ・ 應休 ${staff.leaveQuota || 8}天 ・ 偏好休 ${offText}
+              時薪 NT$${staff.wage} ・ 偏好休 ${offText}
             </div>
           </div>
         </div>
@@ -2992,14 +3358,12 @@ function saveState() {
           </div>
         </div>
         <div style="display:flex;gap:4px;align-items:center;flex-shrink:0;">
-          <button class="btn btn-icon-only btn-edit-shift" data-id="${shift.id}" title="${shift.id === 'shift_off' ? '編輯顏色與代碼' : '編輯班別'}" style="color:var(--accent-primary);">
+          <button class="btn btn-icon-only btn-edit-shift" data-id="${shift.id}" title="編輯班別" style="color:var(--accent-primary);">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
           </button>
-          ${shift.id === 'shift_off' ? '' : `
-            <button class="btn btn-icon-only btn-delete-shift" data-id="${shift.id}" title="移除班別" style="color:var(--accent-danger);">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-            </button>
-          `}
+          <button class="btn btn-icon-only btn-delete-shift" data-id="${shift.id}" title="移除班別" style="color:var(--accent-danger);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          </button>
         </div>
       `;
 
@@ -3020,32 +3384,43 @@ function saveState() {
           const isLeaveEl = document.getElementById('shift-is-leave');
           const saveBtn = document.getElementById('btn-save-shift');
 
-          if (nameEl) nameEl.value = shift.name;
-          if (codeEl) codeEl.value = shift.code;
-          if (enCodeEl) enCodeEl.value = shift.enCode || shift.code;
+          if (nameEl) { nameEl.value = shift.name; nameEl.disabled = false; }
+          if (codeEl) { codeEl.value = shift.code; codeEl.disabled = false; }
+          if (enCodeEl) { enCodeEl.value = shift.enCode || shift.code; enCodeEl.disabled = false; }
           if (textColorEl) textColorEl.value = shift.textColor || '#ffffff';
           if (colorEl) colorEl.value = shift.color;
           if (bgTransEl) bgTransEl.checked = !!shift.bgTransparent;
-          if (startEl) startEl.value = shift.start === '-' ? '00:00' : shift.start;
-          if (endEl) endEl.value = shift.end === '-' ? '00:00' : shift.end;
-          if (hoursEl) hoursEl.value = shift.hours;
-          if (targetEl) targetEl.value = shift.targetStaff;
-          if (isLeaveEl) isLeaveEl.checked = !!shift.isLeave;
+          if (startEl) { startEl.value = shift.start === '-' ? '00:00' : shift.start; startEl.disabled = false; }
+          if (endEl) { endEl.value = shift.end === '-' ? '00:00' : shift.end; endEl.disabled = false; }
+          if (hoursEl) { hoursEl.value = shift.hours; hoursEl.disabled = false; }
+          if (targetEl) { targetEl.value = shift.targetStaff; targetEl.disabled = false; }
+          if (isLeaveEl) { isLeaveEl.checked = !!shift.isLeave; isLeaveEl.disabled = false; }
 
-          // For shift_off: only allow editing color and enCode
-          const isShiftOff = shift.id === 'shift_off';
-          if (nameEl) nameEl.disabled = isShiftOff;
-          if (codeEl) codeEl.disabled = isShiftOff;
-          if (startEl) startEl.disabled = isShiftOff;
-          if (endEl) endEl.disabled = isShiftOff;
-          if (hoursEl) hoursEl.disabled = isShiftOff;
-          if (targetEl) targetEl.disabled = isShiftOff;
-          if (isLeaveEl) isLeaveEl.disabled = isShiftOff;
+          const breakHoursEl = document.getElementById('shift-break-hours');
+          if (breakHoursEl) {
+            breakHoursEl.disabled = false;
+            if (shift.breakHours !== undefined) {
+              breakHoursEl.value = shift.breakHours;
+            } else if (shift.start && shift.end && shift.start !== '-' && shift.end !== '-') {
+              const [sh, sm] = shift.start.split(':').map(Number);
+              const [eh, em] = shift.end.split(':').map(Number);
+              if (!isNaN(sh) && !isNaN(eh)) {
+                let min = (eh * 60 + em) - (sh * 60 + sm);
+                if (min <= 0) min += 24 * 60;
+                const calcBreak = Math.max(0, Math.round((min / 60 - shift.hours) * 10) / 10);
+                breakHoursEl.value = calcBreak;
+              } else {
+                breakHoursEl.value = 1;
+              }
+            } else {
+              breakHoursEl.value = 0;
+            }
+          }
 
           // Mark form as editing this shift
           const form = document.getElementById('form-add-shift');
           if (form) form.dataset.editId = shift.id;
-          if (saveBtn) saveBtn.textContent = isShiftOff ? '更新休假班別 (僅色彩/英文代碼)' : '更新班別';
+          if (saveBtn) saveBtn.textContent = '更新班別';
 
           // Scroll form into view
           if (form) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -3482,14 +3857,14 @@ function doExportCustomExcel() {
       });
     }
 
-    // Reset Demo Data
+    // Reset / Apply Template Data (人員與班別復原，當前週期班別隨機，其他週期清空)
     const btnResetDemo = document.getElementById('btn-reset-demo');
     if (btnResetDemo) {
       btnResetDemo.addEventListener('click', () => {
-        if (confirm('確定要重設為系統預設的示範資料嗎？這將覆蓋現有排班。')) {
+        if (confirm('確定要載入範本嗎？\n（將復原人員與班別設定，當前週期班別隨機排定，其他週期班別清空）')) {
           initDefaultDemoData();
           renderAll();
-          showToast('已還原為示範範本！', 'success');
+          showToast('✅ 人員與班別已復原，當前週期隨機排班完成！', 'success');
         }
       });
     }
@@ -3851,6 +4226,7 @@ function doExportCustomExcel() {
         const enCode = document.getElementById('shift-en-code').value.trim() || code;
         const start = document.getElementById('shift-start').value;
         const end = document.getElementById('shift-end').value;
+        const breakHours = document.getElementById('shift-break-hours') ? (parseFloat(document.getElementById('shift-break-hours').value) || 0) : 0;
         const hours = parseFloat(document.getElementById('shift-hours').value) || 0;
         const color = document.getElementById('shift-color').value;
         const textColor = document.getElementById('shift-text-color') ? document.getElementById('shift-text-color').value : '#ffffff';
@@ -3865,37 +4241,23 @@ function doExportCustomExcel() {
           // Update existing shift
           const existing = state.shifts.find(s => s.id === editId);
           if (existing) {
-            if (editId === 'shift_off') {
-              // shift_off can only update colors and enCode
-              existing.name = '休假';
-              existing.code = '休';
-              existing.enCode = enCode.slice(0, 1);
-              existing.start = '00:00';
-              existing.end = '00:00';
-              existing.hours = 0;
-              existing.color = color;
-              existing.textColor = textColor;
-              existing.bgTransparent = bgTransparent;
-              existing.targetStaff = 0;
-              existing.isLeave = true;
-            } else {
-              existing.name = name;
-              existing.code = code.slice(0, 1);
-              existing.enCode = enCode.slice(0, 1);
-              existing.start = start;
-              existing.end = end;
-              existing.hours = hours;
-              existing.color = color;
-              existing.textColor = textColor;
-              existing.bgTransparent = bgTransparent;
-              existing.targetStaff = targetStaff;
-              existing.isLeave = isLeave;
-            }
+            existing.name = name;
+            existing.code = code.slice(0, 1);
+            existing.enCode = enCode.slice(0, 1);
+            existing.start = start;
+            existing.end = end;
+            existing.breakHours = breakHours;
+            existing.hours = hours;
+            existing.color = color;
+            existing.textColor = textColor;
+            existing.bgTransparent = bgTransparent;
+            existing.targetStaff = targetStaff;
+            existing.isLeave = isLeave;
             delete formAddShift.dataset.editId;
             const saveBtn = document.getElementById('btn-save-shift');
             if (saveBtn) saveBtn.textContent = '新增班別';
             // Re-enable disabled fields
-            ['shift-name', 'shift-code', 'shift-start', 'shift-end', 'shift-hours', 'shift-target-staff', 'shift-is-leave'].forEach(id => {
+            ['shift-name', 'shift-code', 'shift-start', 'shift-end', 'shift-break-hours', 'shift-hours', 'shift-target-staff', 'shift-is-leave'].forEach(id => {
               const el = document.getElementById(id);
               if (el) el.disabled = false;
             });
@@ -3905,7 +4267,7 @@ function doExportCustomExcel() {
             showToast(`已更新班別：${existing.name} [${existing.code}]`, 'success');
           }
         } else {
-          const newShift = { id: `shift_${Date.now()}`, name, code: code.slice(0, 1), enCode: enCode.slice(0, 1), start, end, hours, color, textColor, bgTransparent, targetStaff, isLeave };
+          const newShift = { id: `shift_${Date.now()}`, name, code: code.slice(0, 1), enCode: enCode.slice(0, 1), start, end, breakHours, hours, color, textColor, bgTransparent, targetStaff, isLeave };
           state.shifts.push(newShift);
           if (!isLeave && hours > 0) state.shiftFairness.push(newShift.id);
           saveState();
@@ -3916,8 +4278,70 @@ function doExportCustomExcel() {
         document.getElementById('shift-name').value = '';
         document.getElementById('shift-code').value = '';
         document.getElementById('shift-en-code').value = '';
+        if (document.getElementById('shift-break-hours')) document.getElementById('shift-break-hours').value = '1';
       });
     }
+
+    // Auto-calculate paid hours = (end - start) - break hours
+    function autoCalcShiftHours() {
+      const elStart = document.getElementById('shift-start');
+      const elEnd = document.getElementById('shift-end');
+      const elBreak = document.getElementById('shift-break-hours');
+      const elHours = document.getElementById('shift-hours');
+      const elIsLeave = document.getElementById('shift-is-leave');
+      if (!elStart || !elEnd || !elHours) return;
+      if (elIsLeave && elIsLeave.checked) return;
+
+      const startVal = elStart.value;
+      const endVal = elEnd.value;
+      const breakVal = elBreak ? (parseFloat(elBreak.value) || 0) : 0;
+      if (!startVal || !endVal) return;
+
+      const [sh, sm] = startVal.split(':').map(Number);
+      const [eh, em] = endVal.split(':').map(Number);
+      if (isNaN(sh) || isNaN(sm) || isNaN(eh) || isNaN(em)) return;
+
+      let totalMin = (eh * 60 + em) - (sh * 60 + sm);
+      if (totalMin <= 0) totalMin += 24 * 60; // 跨午夜
+      const totalHours = totalMin / 60;
+      const paidHours = Math.max(0, Math.round((totalHours - breakVal) * 10) / 10);
+      elHours.value = paidHours;
+    }
+
+    const shiftStartEl = document.getElementById('shift-start');
+    const shiftEndEl = document.getElementById('shift-end');
+    const shiftBreakEl = document.getElementById('shift-break-hours');
+    if (shiftStartEl) {
+      shiftStartEl.addEventListener('change', autoCalcShiftHours);
+      shiftStartEl.addEventListener('input', autoCalcShiftHours);
+    }
+    if (shiftEndEl) {
+      shiftEndEl.addEventListener('change', autoCalcShiftHours);
+      shiftEndEl.addEventListener('input', autoCalcShiftHours);
+    }
+    if (shiftBreakEl) {
+      shiftBreakEl.addEventListener('change', autoCalcShiftHours);
+      shiftBreakEl.addEventListener('input', autoCalcShiftHours);
+    }
+
+    // Auto-sync modal-open class on body to prevent background scrolling on mobile
+    const syncModalLock = () => {
+      const hasOpen = document.querySelector('.modal-backdrop.open, .bottom-sheet-backdrop.open');
+      if (hasOpen) {
+        document.body.classList.add('modal-open');
+      } else {
+        document.body.classList.remove('modal-open');
+      }
+    };
+
+    const modalObserver = new MutationObserver(syncModalLock);
+    document.querySelectorAll('.modal-backdrop, .bottom-sheet-backdrop').forEach(el => {
+      modalObserver.observe(el, { attributes: true, attributeFilter: ['class'] });
+      // Prevent backdrop touchmove from sliding background
+      el.addEventListener('touchmove', (e) => {
+        if (e.target === el) e.preventDefault();
+      }, { passive: false });
+    });
 
     // Desktop Popover Outside Click
     document.addEventListener('click', (e) => {
