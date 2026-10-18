@@ -272,7 +272,7 @@
 // ==========================================================================
 
 // ⚠️ 請填入您在 Google Apps Script 部署後取得的「網頁應用程式網址」
-const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxTN7LbXuh5TIBF3XjD9DTQ2J_6FNHRBCTQcTqnsE6aEUcYZi7QCxOePxiqcJHbLHOWFg/exec"
+const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyHU5iGrBViMKEvjoW4q_tE3Yiv2YlATcydBQjJIZ1ApZ-_vbpsuZmGSzG7KEJv_z_DlQ/exec"
 
 /**
  * 輔助函式：用來將解析後的 JSON 物件完整套用進 state 中，並執行預設值防呆與資料正規化

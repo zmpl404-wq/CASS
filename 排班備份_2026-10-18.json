@@ -1,0 +1,2172 @@
+{
+  "staff": [
+    {
+      "id": "staff_1792162844249",
+      "name": "蕭葦茹",
+      "role": "店長",
+      "wage": 200,
+      "maxHours": 40,
+      "color": "#ee719e",
+      "offPref": "none",
+      "leaveQuota": 8,
+      "periodMaxHours": 160
+    },
+    {
+      "id": "staff_1792162876427",
+      "name": "吳喬宛",
+      "role": "正職",
+      "wage": 200,
+      "maxHours": 40,
+      "color": "#be38f3",
+      "offPref": "none",
+      "leaveQuota": 8,
+      "periodMaxHours": 40
+    },
+    {
+      "id": "staff_1792162922716",
+      "name": "李青純",
+      "role": "正職",
+      "wage": 200,
+      "maxHours": 40,
+      "color": "#fefb41",
+      "offPref": "none",
+      "leaveQuota": 8,
+      "periodMaxHours": 40
+    },
+    {
+      "id": "staff_1792162949616",
+      "name": "羅靜雯",
+      "role": "老闆",
+      "wage": 200,
+      "maxHours": 40,
+      "color": "#e22400",
+      "offPref": "none",
+      "leaveQuota": 8,
+      "periodMaxHours": 40
+    },
+    {
+      "id": "staff_1792163003194",
+      "name": "陳奕靜",
+      "role": "工讀生",
+      "wage": 200,
+      "maxHours": 40,
+      "color": "#01c7fc",
+      "offPref": "none",
+      "leaveQuota": 8,
+      "periodMaxHours": 40
+    },
+    {
+      "id": "staff_1792163035426",
+      "name": "游宜臻",
+      "role": "工讀生",
+      "wage": 200,
+      "maxHours": 40,
+      "color": "#96d35f",
+      "offPref": "none",
+      "leaveQuota": 8,
+      "periodMaxHours": 40
+    },
+    {
+      "id": "staff_1792249659974",
+      "name": "陳姣嬋",
+      "role": "工讀生",
+      "wage": 200,
+      "maxHours": 40,
+      "color": "#6366f1",
+      "offPref": "none",
+      "leaveQuota": 8,
+      "periodMaxHours": 160
+    },
+    {
+      "id": "staff_1792249704287",
+      "name": "陳玉珮",
+      "role": "工讀生",
+      "wage": 200,
+      "maxHours": 40,
+      "color": "#feb43f",
+      "offPref": "none",
+      "leaveQuota": 8,
+      "periodMaxHours": 40
+    }
+  ],
+  "shifts": [
+    {
+      "id": "shift_off",
+      "name": "休假",
+      "code": "休",
+      "enCode": "H",
+      "start": "00:00",
+      "end": "00:00",
+      "hours": 0,
+      "color": "#ffffff",
+      "textColor": "#ef4444",
+      "bgTransparent": true,
+      "targetStaff": 0,
+      "isLeave": true
+    },
+    {
+      "id": "shift_1789744720001",
+      "name": "A",
+      "code": "A",
+      "enCode": "A",
+      "start": "09:30",
+      "end": "18:30",
+      "hours": 8,
+      "color": "#ffffff",
+      "textColor": "#000000",
+      "bgTransparent": true,
+      "targetStaff": 1,
+      "isLeave": false
+    },
+    {
+      "id": "shift_1789744781872",
+      "name": "B",
+      "code": "B",
+      "enCode": "B",
+      "start": "11:00",
+      "end": "20:00",
+      "hours": 8,
+      "color": "#ffffff",
+      "textColor": "#000000",
+      "bgTransparent": true,
+      "targetStaff": 1,
+      "isLeave": false
+    },
+    {
+      "id": "shift_1789744831308",
+      "name": "C",
+      "code": "C",
+      "enCode": "C",
+      "start": "09:30",
+      "end": "20:00",
+      "hours": 9.5,
+      "color": "#ffffff",
+      "textColor": "#000000",
+      "bgTransparent": true,
+      "targetStaff": 1,
+      "isLeave": false
+    },
+    {
+      "id": "shift_1792247726553",
+      "name": "打菜",
+      "code": "D",
+      "enCode": "D",
+      "start": "10:00",
+      "end": "19:00",
+      "hours": 8,
+      "color": "#ffffff",
+      "textColor": "#000000",
+      "bgTransparent": true,
+      "targetStaff": 1,
+      "isLeave": false
+    },
+    {
+      "id": "shift_1792249605127",
+      "name": "三阿姨",
+      "code": "3",
+      "enCode": "3",
+      "start": "10:30",
+      "end": "13:00",
+      "hours": 2.5,
+      "color": "#ffffff",
+      "textColor": "#000000",
+      "bgTransparent": true,
+      "targetStaff": 1,
+      "isLeave": false
+    },
+    {
+      "id": "shift_1792302074861",
+      "name": "排休",
+      "code": "排",
+      "enCode": "H",
+      "start": "09:00",
+      "end": "09:00",
+      "hours": 0,
+      "color": "#ffffff",
+      "textColor": "#0042a9",
+      "bgTransparent": true,
+      "targetStaff": 2,
+      "isLeave": true
+    }
+  ],
+  "roles": [
+    "店長",
+    "正職",
+    "工讀生",
+    "老闆"
+  ],
+  "schedules": {
+    "staff_1792162844249_2026-11-01": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-01": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-01": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-01": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-01": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-01": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-01": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-01": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-02": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-02": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-02": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-02": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-02": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-02": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-02": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-02": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-03": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-03": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-03": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-03": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-03": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-03": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-03": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-03": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-04": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-04": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-04": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-04": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-04": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-04": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-04": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-04": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-05": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-05": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-05": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-05": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-05": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-05": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-05": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-05": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-06": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-06": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-06": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-06": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-06": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-06": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-06": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-06": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-07": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-07": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-07": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-07": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-07": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-07": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-07": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-07": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-08": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-08": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-08": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-08": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-08": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-08": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-08": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-08": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-09": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-09": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-09": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-09": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-09": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-09": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-09": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-09": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-10": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-10": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-10": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-10": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-10": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-10": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-10": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-10": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-11": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-11": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-11": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-11": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-11": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-11": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-11": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-11": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-12": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-12": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-12": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-12": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-12": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-12": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-12": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-12": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-13": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-13": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-13": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-13": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-13": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-13": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-13": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-13": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-14": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-14": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-14": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-14": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-14": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-14": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-14": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-14": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-15": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-15": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-15": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-15": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-15": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-15": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-15": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-15": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-16": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-16": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-16": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-16": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-16": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-16": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-16": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-16": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-17": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-17": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-17": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-17": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-17": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-17": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-17": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-17": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-18": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-18": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-18": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-18": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-18": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-18": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-18": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-18": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-19": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-19": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-19": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-19": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-19": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-19": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-19": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-19": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-20": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-20": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-20": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-20": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-20": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-20": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-20": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-20": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-21": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-21": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-21": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-21": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-21": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-21": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-21": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-21": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-22": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-22": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-22": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-22": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-22": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-22": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-22": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-22": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-23": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-23": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-23": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-23": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-23": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-23": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-23": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-23": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-24": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-24": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-24": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-24": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-24": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-24": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-24": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-24": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-25": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-25": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-25": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-25": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-25": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-25": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-25": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-25": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-26": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-26": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-26": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-26": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-26": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-26": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-26": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-26": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-27": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-27": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-27": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-27": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-27": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-27": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-27": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-27": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-28": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-28": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-28": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-28": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-28": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-28": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-28": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-28": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-29": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-29": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-29": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-29": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-29": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-29": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-29": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-29": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-11-30": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-11-30": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-11-30": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-11-30": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-11-30": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-11-30": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-11-30": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-11-30": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-01": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-01": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-01": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-01": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-01": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-01": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-01": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-01": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-02": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-02": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-02": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-02": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-02": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-02": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-02": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-02": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-03": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-03": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-03": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-03": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-03": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-03": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-03": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-03": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-04": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-04": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-04": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-04": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-04": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-04": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-04": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-04": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-05": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-05": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-05": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-05": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-05": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-05": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-05": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-05": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-06": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-06": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-06": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-06": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-06": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-06": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-06": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-06": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-07": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-07": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-07": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-07": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-07": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-07": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-07": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-07": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-08": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-08": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-08": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-08": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-08": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-08": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-08": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-08": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-09": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-09": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-09": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-09": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-09": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-09": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-09": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-09": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-10": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-10": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-10": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-10": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-10": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-10": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-10": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-10": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-11": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-11": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-11": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-11": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-11": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-11": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-11": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-11": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-12": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-12": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-12": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-12": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-12": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-12": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-12": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-12": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-13": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-13": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-13": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-13": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-13": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-13": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-13": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-13": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-14": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-14": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-14": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-14": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-14": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-14": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-14": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-14": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-15": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-15": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-15": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-15": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-15": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-15": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-15": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-15": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-16": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-16": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-16": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-16": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-16": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-16": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-16": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-16": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-17": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-17": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-17": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-17": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-17": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-17": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-17": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-17": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-18": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-18": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-18": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-18": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-18": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-18": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-18": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-18": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-19": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-19": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-19": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-19": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-19": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-19": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-19": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-19": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-20": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-20": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-20": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-20": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-20": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-20": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-20": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-20": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-21": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-21": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-21": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-21": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-21": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-21": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-21": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-21": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-22": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-22": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-22": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-22": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-22": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-22": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-22": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-22": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-23": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-23": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-23": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-23": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-23": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-23": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-23": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-23": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-24": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-24": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-24": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-24": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-24": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-24": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-24": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-24": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-25": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-25": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-25": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-25": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-25": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-25": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-25": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-25": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-26": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-26": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-26": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-26": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-26": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-26": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-26": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-26": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-27": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-27": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-27": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-27": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-27": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-27": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-27": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-27": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-28": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-28": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-28": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-28": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-28": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-28": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-28": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-28": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-29": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-29": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-29": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-29": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-29": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-29": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-29": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-29": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-30": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-30": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-30": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-30": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-30": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-30": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-30": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-30": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249704287_2026-10-31": {
+      "shiftId": "shift_1789744720001",
+      "otHours": 0
+    },
+    "staff_1792163035426_2026-10-31": {
+      "shiftId": "shift_1789744781872",
+      "otHours": 0
+    },
+    "staff_1792162876427_2026-10-31": {
+      "shiftId": "shift_1789744831308",
+      "otHours": 0
+    },
+    "staff_1792162949616_2026-10-31": {
+      "shiftId": "shift_1792247726553",
+      "otHours": 0
+    },
+    "staff_1792163003194_2026-10-31": {
+      "shiftId": "shift_1792249605127",
+      "otHours": 0
+    },
+    "staff_1792162844249_2026-10-31": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792162922716_2026-10-31": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    },
+    "staff_1792249659974_2026-10-31": {
+      "shiftId": "shift_off",
+      "otHours": 0
+    }
+  },
+  "rules": {
+    "maxDailyShifts": 1,
+    "maxConsecutiveDays": 6,
+    "maxDailyHours": 12,
+    "periodMaxHours": 160,
+    "monthlyLeaveQuota": 8,
+    "weekdayShiftMin": {},
+    "holidayShiftMin": {},
+    "headcount": {
+      "weekdayMin": 3,
+      "weekendMin": 4,
+      "customDates": []
+    }
+  },
+  "antiPairs": [],
+  "roleRestrictions": [],
+  "shiftFairness": [],
+  "otMultiplier": 1.34,
+  "shiftDisplayLang": "zh",
+  "exportedAt": "2026-10-18T15:59:05.641Z"
+}
