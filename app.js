@@ -235,6 +235,7 @@
   },
   "antiPairs": [],
   "roleRestrictions": [],
+  "staffRestrictions": [],
   "shiftFairness": [],
   "otMultiplier": 1.34,
   "shiftDisplayLang": "zh",
@@ -292,6 +293,7 @@
     // Auto-Schedule Advanced Rules
     antiPairs: [], // Array of [staffIdA, staffIdB]
     roleRestrictions: [], // Array of { role: string, shiftId: string }
+    staffRestrictions: [], // Array of { staffId: string, shiftId: string }
     shiftFairness: [], // Shift IDs that must be balanced
     activeTarget: null
   };
@@ -477,7 +479,7 @@
 // ==========================================================================
 
 // ⚠️ 請填入您在 Google Apps Script 部署後取得的「網頁應用程式網址」
-const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyHU5iGrBViMKEvjoW4q_tE3Yiv2YlATcydBQjJIZ1ApZ-_vbpsuZmGSzG7KEJv_z_DlQ/exec"
+const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyZk5GcyzBHtBHQ78Wg157VAhHidyrFHOMSVIzGEn0Jw6DiOkFM6i_DJpIXe8wtJs43HA/exec"
 
 /**
  * 輔助函式：用來將解析後的 JSON 物件完整套用進 state 中，並執行預設值防呆與資料正規化
@@ -506,6 +508,7 @@ function applyParsedState(parsed) {
   
   state.antiPairs = parsed.antiPairs || [];
   state.roleRestrictions = parsed.roleRestrictions || [];
+  state.staffRestrictions = Array.isArray(parsed.staffRestrictions) ? parsed.staffRestrictions : [];
   state.shiftFairness = Array.isArray(parsed.shiftFairness) ? parsed.shiftFairness : [];
   state.customShiftRequirements = parsed.customShiftRequirements || [];
 
@@ -626,6 +629,7 @@ function saveState() {
       rules: state.rules,
       antiPairs: state.antiPairs,
       roleRestrictions: state.roleRestrictions,
+      staffRestrictions: state.staffRestrictions || [],
       shiftFairness: state.shiftFairness,
       customShiftRequirements: state.customShiftRequirements || []
     };
@@ -746,6 +750,7 @@ function saveState() {
     }));
     state.antiPairs = [...(DEFAULT_TEMPLATE.antiPairs || [])];
     state.roleRestrictions = JSON.parse(JSON.stringify(DEFAULT_TEMPLATE.roleRestrictions || []));
+    state.staffRestrictions = JSON.parse(JSON.stringify(DEFAULT_TEMPLATE.staffRestrictions || []));
     state.shiftFairness = [...(DEFAULT_TEMPLATE.shiftFairness || [])];
     state.otMultiplier = typeof DEFAULT_TEMPLATE.otMultiplier === 'number' ? DEFAULT_TEMPLATE.otMultiplier : 1.34;
     state.shiftDisplayLang = DEFAULT_TEMPLATE.shiftDisplayLang || 'zh';
@@ -913,6 +918,19 @@ function saveState() {
               type: 'role-restrict',
               title: '職位限制衝突',
               desc: `${staff.name} 職位為「${staff.role}」，依排班約束不可排定「${shift.name}」`
+            });
+          }
+
+          // Check Staff Restrictions (特定人員不能上特定班別)
+          const isStaffRestricted = (state.staffRestrictions || []).some(r => r.staffId === staff.id && r.shiftId === shift.id);
+          if (isStaffRestricted) {
+            violations.push({
+              staffId: staff.id,
+              staffName: staff.name,
+              date: dateStr,
+              type: 'staff-restrict',
+              title: '人員班別限制衝突',
+              desc: `${staff.name} 設有個人班別限制，不可排定「${shift.name}」`
             });
           }
         }
@@ -1446,11 +1464,13 @@ function saveState() {
     state.staff.forEach(staff => {
       const tr = document.createElement('tr');
 
+      const roleInitial = staff.role ? staff.role.trim().slice(0, 1) : '';
+      const roleInitialHtml = roleInitial ? `<span class="staff-role-initial">${escapeHtml(roleInitial)}</span>` : '';
       const tdStaff = document.createElement('td');
       tdStaff.className = 'staff-row-cell';
       tdStaff.innerHTML = `
         <div class="staff-profile-card">
-          <span class="staff-name" title="${escapeHtml(staff.name)} (${escapeHtml(staff.role)})">${escapeHtml(staff.name)}</span>
+          <span class="staff-name" title="${escapeHtml(staff.name)} (${escapeHtml(staff.role)})">${escapeHtml(staff.name)}</span>${roleInitialHtml}
         </div>
       `;
       tr.appendChild(tdStaff);
@@ -1630,13 +1650,15 @@ function saveState() {
     state.staff.forEach(staff => {
       const tr = document.createElement('tr');
 
-      // 姓名欄（固定不滑動、不顯示職稱）
+      // 姓名欄（固定不滑動、顯示職稱第一個字）
+      const roleInitial = staff.role ? staff.role.trim().slice(0, 1) : '';
+      const roleInitialHtml = roleInitial ? `<span class="staff-role-initial">${escapeHtml(roleInitial)}</span>` : '';
       const tdStaff = document.createElement('td');
       tdStaff.className = 'staff-row-cell';
       tdStaff.innerHTML = `
-        <div class="staff-info-compact" title="${escapeHtml(staff.name)}">
+        <div class="staff-info-compact" title="${escapeHtml(staff.name)} (${escapeHtml(staff.role)})">
           <div class="staff-color-dot" style="background:${staff.color};"></div>
-          <span class="staff-name-text">${escapeHtml(staff.name)}</span>
+          <span class="staff-name-text">${escapeHtml(staff.name)}</span>${roleInitialHtml}
         </div>
       `;
       tr.appendChild(tdStaff);
@@ -1685,7 +1707,8 @@ function saveState() {
     const listEl = document.getElementById('shift-date-details-list');
 
     const currentShiftTitle = (state.shiftDisplayLang === 'en' ? (shift.enCode || shift.code || shift.name) : shift.name);
-    if (nameEl) nameEl.textContent = staff.name;
+    const roleInitial = staff.role ? staff.role.trim().slice(0, 1) : '';
+    if (nameEl) nameEl.textContent = staff.name + (roleInitial ? ` (${roleInitial})` : '');
     if (shiftEl) shiftEl.textContent = currentShiftTitle;
 
     if (listEl) {
@@ -2199,10 +2222,12 @@ function saveState() {
       const isOver = allowed !== null && breakdown.totalHours > allowed;
       const allowedDisplay = allowed !== null ? `${Math.round(allowed)}h` : '未設定';
       const allowedVal = allowed !== null ? Math.round(allowed) : '';
+      const roleInitial = staff.role ? staff.role.trim().slice(0, 1) : '';
+      const roleInitialHtml = roleInitial ? `<span class="staff-role-initial">${escapeHtml(roleInitial)}</span>` : '';
 
       html += `
         <tr>
-          <td><b>${escapeHtml(staff.name)}</b></td>
+          <td><b>${escapeHtml(staff.name)}</b>${roleInitialHtml}</td>
           <td>${allowedDisplay}</td>
           <td>${breakdown.normalHours}h</td>
           <td style="color:#f59e0b;font-weight:700;">${breakdown.otHours > 0 ? `+${breakdown.otHours}h` : '0h'}</td>
@@ -2331,9 +2356,12 @@ function saveState() {
       sumElDeduction += elDeduction;
       sumTotalCost += totalPay;
 
+      const roleInitial = staff.role ? staff.role.trim().slice(0, 1) : '';
+      const roleInitialHtml = roleInitial ? `<span class="staff-role-initial">${escapeHtml(roleInitial)}</span>` : '';
+
       html += `
         <tr>
-          <td><b>${escapeHtml(staff.name)}</b></td>
+          <td><b>${escapeHtml(staff.name)}</b>${roleInitialHtml}</td>
           <td>NT$ ${staff.wage}</td>
           <td>${breakdown.normalHours}h</td>
           <td>NT$ ${normalPay.toLocaleString()}</td>
@@ -2439,9 +2467,12 @@ function saveState() {
         statusHtml = `<span class="headcount-status-badge ${diff === 0 ? 'status-ok' : (isShort ? 'status-shortage' : 'status-ok')}">${diff === 0 ? '已足額' : (isShort ? `尚缺 ${diff} 天` : `超出 ${Math.abs(diff)} 天`)}</span>`;
       }
 
+      const roleInitial = staff.role ? staff.role.trim().slice(0, 1) : '';
+      const roleInitialHtml = roleInitial ? `<span class="staff-role-initial">${escapeHtml(roleInitial)}</span>` : '';
+
       html += `
         <tr>
-          <td><b>${escapeHtml(staff.name)}</b></td>
+          <td><b>${escapeHtml(staff.name)}</b>${roleInitialHtml}</td>
           <td>
             <input type="number" class="leave-quota-input" data-staff-id="${staff.id}" value="${quota !== null ? quota : ''}" placeholder="輸入天數" min="0" max="31">
           </td>
@@ -2845,6 +2876,60 @@ function saveState() {
       }
     }
 
+    // Rule 3: Staff Shift Restrictions (特定人員不能上特定班別)
+    const selStaffRestrict = document.getElementById('select-staff-restrict-staff');
+    const selStaffShift = document.getElementById('select-staff-restrict-shift');
+    const listStaffRestrict = document.getElementById('staff-restrict-list-container');
+
+    if (selStaffRestrict && selStaffShift) {
+      selStaffRestrict.innerHTML = '';
+      state.staff.forEach(st => {
+        const opt = document.createElement('option');
+        opt.value = st.id;
+        const rInit = st.role ? ` (${st.role})` : '';
+        opt.textContent = `${st.name}${rInit}`;
+        selStaffRestrict.appendChild(opt);
+      });
+
+      selStaffShift.innerHTML = '';
+      const workShifts = state.shifts.filter(s => s.id !== 'shift_off');
+      workShifts.forEach(sh => {
+        const opt = document.createElement('option');
+        opt.value = sh.id;
+        opt.textContent = `${sh.name} (${sh.code})`;
+        selStaffShift.appendChild(opt);
+      });
+    }
+
+    if (listStaffRestrict) {
+      listStaffRestrict.innerHTML = '';
+      state.staffRestrictions = Array.isArray(state.staffRestrictions) ? state.staffRestrictions : [];
+      if (state.staffRestrictions.length === 0) {
+        listStaffRestrict.innerHTML = '<span style="font-size:0.75rem;color:var(--text-muted);">尚未設定人員限制（所有人員皆可排任意班別）</span>';
+      } else {
+        state.staffRestrictions.forEach((item, idx) => {
+          const staffObj = state.staff.find(s => s.id === item.staffId);
+          const staffName = staffObj ? staffObj.name : '已刪除人員';
+          const shift = state.shifts.find(s => s.id === item.shiftId);
+          const shiftName = shift ? shift.name : '已刪除班別';
+
+          const tag = document.createElement('div');
+          tag.className = 'rule-tag-item';
+          tag.innerHTML = `
+            <span>🚫 人員 <b>${escapeHtml(staffName)}</b> 不能上 <b>${escapeHtml(shiftName)}</b></span>
+            <button type="button" class="btn-del-rule" title="移除此限制">&times;</button>
+          `;
+          tag.querySelector('.btn-del-rule').addEventListener('click', () => {
+            state.staffRestrictions.splice(idx, 1);
+            saveState();
+            renderAutoRulesModalUI();
+            showToast('已移除人員排班限制', 'info');
+          });
+          listStaffRestrict.appendChild(tag);
+        });
+      }
+    }
+
     // Weekday & Weekend Minimum Headcount
     const inpAutoWeekday = document.getElementById('auto-rule-weekday-headcount');
     const inpAutoHoliday = document.getElementById('auto-rule-holiday-headcount');
@@ -3181,6 +3266,10 @@ function saveState() {
           const restricted = state.roleRestrictions.some(r => r.role === staff.role && r.shiftId === shift.id);
           if (restricted) return false;
 
+          // 4.1 排班規則：個人班別限制 (特定人員不能上特定班別)
+          const staffRestricted = (state.staffRestrictions || []).some(r => r.staffId === staff.id && r.shiftId === shift.id);
+          if (staffRestricted) return false;
+
           // 5. 排班規則：搭檔互斥衝突
           const conflict = state.antiPairs.some(pair => {
             if (pair[0] === staff.id && workingToday.has(pair[1])) return true;
@@ -3259,6 +3348,8 @@ function saveState() {
           const availableShift = availableShifts.find(shift => {
             const restricted = state.roleRestrictions.some(r => r.role === candidate.role && r.shiftId === shift.id);
             if (restricted) return false;
+            const staffRestricted = (state.staffRestrictions || []).some(r => r.staffId === candidate.id && r.shiftId === shift.id);
+            if (staffRestricted) return false;
             const conflict = state.antiPairs.some(pair => {
               if (pair[0] === candidate.id && workingToday.has(pair[1])) return true;
               if (pair[1] === candidate.id && workingToday.has(pair[0])) return true;
@@ -3351,6 +3442,7 @@ function saveState() {
         if (confirm(`確定要移除「${staff.name}」嗎？這將一併清除該同仁的排班紀錄。`)) {
           state.staff = state.staff.filter(s => s.id !== staff.id);
           state.antiPairs = state.antiPairs.filter(pair => pair[0] !== staff.id && pair[1] !== staff.id);
+          state.staffRestrictions = (state.staffRestrictions || []).filter(sr => sr.staffId !== staff.id);
           Object.keys(state.schedules).forEach(k => {
             if (k.startsWith(`${staff.id}_`)) delete state.schedules[k];
           });
@@ -3567,6 +3659,7 @@ function saveState() {
             state.shifts = state.shifts.filter(s => s.id !== shift.id);
             state.shiftFairness = state.shiftFairness.filter(id => id !== shift.id);
             state.roleRestrictions = state.roleRestrictions.filter(rr => rr.shiftId !== shift.id);
+            state.staffRestrictions = (state.staffRestrictions || []).filter(sr => sr.shiftId !== shift.id);
             // Clear schedules using this shift
             Object.keys(state.schedules).forEach(k => {
               if (state.schedules[k] && state.schedules[k].shiftId === shift.id) {
@@ -4071,6 +4164,31 @@ function doExportCustomExcel() {
       });
     }
 
+    // Add Staff Restriction (特定人員不能上特定班別)
+    const btnAddStaffRestrict = document.getElementById('btn-add-staff-restrict');
+    if (btnAddStaffRestrict) {
+      btnAddStaffRestrict.addEventListener('click', () => {
+        const staffId = document.getElementById('select-staff-restrict-staff').value;
+        const shiftId = document.getElementById('select-staff-restrict-shift').value;
+        if (!staffId || !shiftId) return;
+
+        state.staffRestrictions = Array.isArray(state.staffRestrictions) ? state.staffRestrictions : [];
+        const exists = state.staffRestrictions.some(r => r.staffId === staffId && r.shiftId === shiftId);
+        if (exists) {
+          showToast('此人員班別限制已存在！', 'warning');
+          return;
+        }
+        state.staffRestrictions.push({ staffId, shiftId });
+        saveState();
+        renderAutoRulesModalUI();
+        const staffObj = state.staff.find(s => s.id === staffId);
+        const shiftObj = state.shifts.find(s => s.id === shiftId);
+        const staffName = staffObj ? staffObj.name : '人員';
+        const shiftName = shiftObj ? shiftObj.name : '班別';
+        showToast(`已新增限制：${staffName} 不能上「${shiftName}」`, 'success');
+      });
+    }
+
     // Add Custom Date Shift Headcount Requirement
     const btnAddCustomReq = document.getElementById('btn-add-custom-req');
     if (btnAddCustomReq) {
@@ -4569,6 +4687,7 @@ function doExportCustomExcel() {
           rules: state.rules,
           antiPairs: state.antiPairs,
           roleRestrictions: state.roleRestrictions,
+          staffRestrictions: state.staffRestrictions || [],
           shiftFairness: state.shiftFairness,
           otMultiplier: state.otMultiplier,
           shiftDisplayLang: state.shiftDisplayLang,
@@ -4629,6 +4748,7 @@ function doExportCustomExcel() {
             if (imported.rules) state.rules = imported.rules;
             if (imported.antiPairs) state.antiPairs = imported.antiPairs;
             if (imported.roleRestrictions) state.roleRestrictions = imported.roleRestrictions;
+            if (imported.staffRestrictions) state.staffRestrictions = imported.staffRestrictions;
             if (imported.shiftFairness) state.shiftFairness = imported.shiftFairness;
             if (typeof imported.otMultiplier === 'number') state.otMultiplier = imported.otMultiplier;
             if (imported.shiftDisplayLang) state.shiftDisplayLang = imported.shiftDisplayLang;

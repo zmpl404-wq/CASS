@@ -2154,13 +2154,13 @@ th.diagonal-header-cell {
     border-collapse: separate;
   }
 
-  /* 員工姓名欄：從 210px 縮小至 64px，實色完全不透明與高 z-index，徹底杜絕左右滑動被覆蓋問題 */
+  /* 員工姓名欄：調整適度寬度讓姓名與職稱首字完整顯示，不被截斷，實色完全不透明與高 z-index 杜絕左右滑動被覆蓋問題 */
   .compact-table th.col-staff {
-    min-width: 64px !important;
-    width: 64px !important;
-    max-width: 66px !important;
-    padding: 0.35rem 0.25rem !important;
-    font-size: 0.72rem !important;
+    min-width: 88px !important;
+    width: auto !important;
+    max-width: 120px !important;
+    padding: 0.35rem 0.35rem !important;
+    font-size: 0.75rem !important;
     left: 0 !important;
     top: 0 !important;
     position: sticky !important;
@@ -2168,23 +2168,30 @@ th.diagonal-header-cell {
     background-color: var(--bg-surface) !important;
     border-right: 2px solid var(--border-color) !important;
     box-shadow: 3px 0 8px rgba(0, 0, 0, 0.45) !important;
+    white-space: nowrap !important;
   }
 
   .compact-table td.staff-row-cell {
-    min-width: 64px !important;
-    width: 64px !important;
-    max-width: 66px !important;
-    padding: 0.35rem 0.25rem !important;
-    font-size: 0.72rem !important;
+    min-width: 88px !important;
+    width: auto !important;
+    max-width: 120px !important;
+    padding: 0.35rem 0.35rem !important;
+    font-size: 0.75rem !important;
     left: 0 !important;
     position: sticky !important;
     z-index: 30 !important;
     background-color: var(--bg-surface) !important;
     border-right: 2px solid var(--border-color) !important;
     box-shadow: 3px 0 8px rgba(0, 0, 0, 0.45) !important;
+    white-space: nowrap !important;
   }
 
   .compact-table tfoot th.col-staff {
+    min-width: 88px !important;
+    width: auto !important;
+    max-width: 120px !important;
+    padding: 0.35rem 0.35rem !important;
+    font-size: 0.75rem !important;
     position: sticky !important;
     left: 0 !important;
     bottom: 0 !important;
@@ -2192,11 +2199,14 @@ th.diagonal-header-cell {
     background-color: var(--bg-surface) !important;
     border-right: 2px solid var(--border-color) !important;
     box-shadow: 3px 0 8px rgba(0, 0, 0, 0.45) !important;
+    white-space: nowrap !important;
   }
 
   .compact-table .staff-profile-card {
-    gap: 0.25rem;
+    display: inline-flex;
     align-items: center;
+    gap: 0.2rem;
+    white-space: nowrap !important;
   }
 
   .compact-table .staff-avatar {
@@ -2204,13 +2214,21 @@ th.diagonal-header-cell {
   }
 
   .compact-table .staff-name {
-    font-size: 0.75rem !important;
+    font-size: 0.78rem !important;
     font-weight: 700 !important;
-    max-width: 60px !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
+    max-width: none !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
     white-space: nowrap !important;
-    display: block !important;
+    display: inline-block !important;
+  }
+
+  .compact-table .staff-role-initial {
+    font-size: 0.62rem !important;
+    padding: 0.02rem 0.2rem !important;
+    margin-left: 0.15rem !important;
+    line-height: 1.1 !important;
+    flex-shrink: 0;
   }
 
   .compact-table .staff-role-badge,
@@ -2825,9 +2843,55 @@ body.modal-open {
   white-space: nowrap;
 }
 
+/* 姓名旁職稱第一個字 (微型職稱標籤) */
+.staff-role-initial {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.05rem 0.28rem;
+  margin-left: 0.28rem;
+  border-radius: 4px;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  line-height: 1.15;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
 /* ==========================================================================
    班數總表專屬樣式 (Stats Table Mode)
    ========================================================================== */
+/* 班數總表 (stats-table) 姓名欄寬度調整，避免電腦版檢視時姓名換行 */
+.stats-table th.col-staff,
+.stats-table th.col-staff.diagonal-header-cell,
+.stats-table td.staff-row-cell,
+.compact-table.stats-table th.col-staff,
+.compact-table.stats-table th.col-staff.diagonal-header-cell,
+.compact-table.stats-table td.staff-row-cell {
+  min-width: 105px !important;
+  width: auto !important;
+  max-width: 150px !important;
+  white-space: nowrap !important;
+  padding: 0.4rem 0.5rem !important;
+}
+
+.stats-table .staff-info-compact {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap !important;
+  overflow: hidden;
+}
+
+.stats-table .staff-name-text {
+  white-space: nowrap !important;
+  font-weight: 600;
+  font-size: 0.85rem;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
 .stats-table th.col-shift {
   text-align: center;
   padding: 0.4rem 0.5rem;

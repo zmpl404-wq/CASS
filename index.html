@@ -822,6 +822,22 @@
 
         <hr style="border:0;border-top:1px solid var(--border-color);">
 
+        <!-- Rule 3: Staff Shift Restrictions (特定人員不能上特定班別) -->
+        <div class="card-embedded">
+          <h4 style="font-size:0.875rem;font-weight:700;color:var(--text-primary);margin-bottom:0.4rem;">
+            🚫 人員班別限制 (特定人員不能上特定班別)
+          </h4>
+          <div style="display:flex;gap:0.45rem;align-items:center;flex-wrap:wrap;">
+            <select id="select-staff-restrict-staff" class="form-control" style="flex:1;min-width:120px;"></select>
+            <span style="font-size:0.8rem;color:var(--accent-danger);font-weight:700;">不能上</span>
+            <select id="select-staff-restrict-shift" class="form-control" style="flex:1;min-width:120px;"></select>
+            <button id="btn-add-staff-restrict" class="btn btn-secondary" style="font-size:0.8rem;">＋ 加入限制</button>
+          </div>
+          <div id="staff-restrict-list-container" style="margin-top:0.6rem;display:flex;flex-direction:column;gap:0.35rem;"></div>
+        </div>
+
+        <hr style="border:0;border-top:1px solid var(--border-color);">
+
         <!-- Rule 4: Custom Date Shift Headcount Requirement -->
         <div class="card-embedded">
           <h4 style="font-size:0.875rem;font-weight:700;color:var(--text-primary);margin-bottom:0.4rem;">
