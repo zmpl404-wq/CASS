@@ -1681,7 +1681,11 @@ th.diagonal-header-cell {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  min-width: 170px;
+  min-width: 180px;
+  max-width: calc(100vw - 16px);
+  max-height: calc(100vh - 24px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   animation: popover-appear 0.15s ease-out;
 }
 

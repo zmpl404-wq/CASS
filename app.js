@@ -2105,8 +2105,46 @@ function saveState() {
 
     const rect = anchorEl.getBoundingClientRect();
     elShiftPicker.style.display = 'flex';
-    elShiftPicker.style.top = `${window.scrollY + rect.bottom + 4}px`;
-    elShiftPicker.style.left = `${window.scrollX + rect.left}px`;
+    elShiftPicker.style.visibility = 'hidden';
+
+    // 取得彈出視窗尺寸與螢幕視窗可視高度
+    const popoverRect = elShiftPicker.getBoundingClientRect();
+    const popoverHeight = popoverRect.height;
+    const popoverWidth = popoverRect.width;
+    const viewportHeight = window.innerHeight;
+    const viewportWidth = window.innerWidth;
+
+    const spaceBelow = viewportHeight - rect.bottom;
+    const spaceAbove = rect.top;
+
+    let topPos = 0;
+    // 若下方空間不足以容納彈出視窗（且上方空間大於下方），自動往上延伸顯示
+    if (spaceBelow < popoverHeight + 12 && spaceAbove > spaceBelow) {
+      topPos = window.scrollY + rect.top - popoverHeight - 4;
+      if (topPos < window.scrollY + 8) {
+        topPos = window.scrollY + 8;
+      }
+    } else {
+      // 往下延伸，但保證不超出視窗底部
+      topPos = window.scrollY + rect.bottom + 4;
+      const maxTop = window.scrollY + viewportHeight - popoverHeight - 8;
+      if (topPos > maxTop) {
+        topPos = Math.max(window.scrollY + 8, maxTop);
+      }
+    }
+
+    // 水平方向防止超出視窗右側
+    let leftPos = window.scrollX + rect.left;
+    if (rect.left + popoverWidth > viewportWidth - 8) {
+      leftPos = window.scrollX + viewportWidth - popoverWidth - 8;
+    }
+    if (leftPos < window.scrollX + 8) {
+      leftPos = window.scrollX + 8;
+    }
+
+    elShiftPicker.style.top = `${topPos}px`;
+    elShiftPicker.style.left = `${leftPos}px`;
+    elShiftPicker.style.visibility = 'visible';
   }
 
   function closeShiftPicker() {
@@ -2960,7 +2998,7 @@ function saveState() {
   // Auto-Scheduling Solver (依據互斥、偏好、公平性平均指派，帶入除錯設定以達成 0 異常)
   // ==========================================================================
   function runAutoScheduler() {
-    if (!confirm('自動排班將覆蓋現有班表內容，確認繼續？')) {
+    if (!confirm('將針對當期「尚未填入班別」的日期進行智慧自動排班（已填入之班別將完整保留不覆蓋），確認繼續？')) {
       return;
     }
 
@@ -2977,6 +3015,23 @@ function saveState() {
       return;
     }
 
+    // 檢查是否有尚未填入班別的格子
+    let emptySlotsCount = 0;
+    state.staff.forEach(s => {
+      periodDays.forEach(d => {
+        const dateIso = formatDateIso(d);
+        const entry = getScheduleEntry(s.id, dateIso);
+        if (!entry || !entry.shiftId) {
+          emptySlotsCount++;
+        }
+      });
+    });
+
+    if (emptySlotsCount === 0) {
+      showToast('當期所有同仁之班別均已完整排定，無空白班表需要填入！', 'info');
+      return;
+    }
+
     const maxConsecutive = state.rules.maxConsecutiveDays || 6;
     const maxDailyHours = state.rules.maxDailyHours || 12;
     const periodMaxHours = (state.rules && typeof state.rules.periodMaxHours === 'number') ? state.rules.periodMaxHours : 160;
@@ -2990,17 +3045,25 @@ function saveState() {
       workShifts.forEach(sh => { shiftCountMap[s.id][sh.id] = 0; });
     });
 
-    // Clear existing period schedules
-    state.staff.forEach(s => {
-      periodDays.forEach(d => {
-        const dateIso = formatDateIso(d);
-        delete state.schedules[`${s.id}_${dateIso}`];
+    // 先讀取當期現有班表，統計已排定之工時與班別次數（不覆蓋已填入之班別）
+    periodDays.forEach(d => {
+      const dateIso = formatDateIso(d);
+      state.staff.forEach(s => {
+        const entry = getScheduleEntry(s.id, dateIso);
+        if (entry && entry.shiftId) {
+          const shift = state.shifts.find(sh => sh.id === entry.shiftId);
+          if (shift && !shift.isLeave && shift.hours > 0) {
+            shiftCountMap[s.id][shift.id] = (shiftCountMap[s.id][shift.id] || 0) + 1;
+            staffHoursMap[s.id] = (staffHoursMap[s.id] || 0) + (shift.hours || 0) + (entry.otHours || 0);
+          }
+        }
       });
     });
 
-    // Helper: 計算某同仁在此日前已連續上班幾天
-    function getStreakDaysBefore(staffId, dayIndex) {
-      let streak = 0;
+    // Helper: 檢查若某同仁在此日排入上班，是否會超過法定/設定連續上班天數 (前後雙向檢查)
+    function wouldExceedConsecutive(staffId, dayIndex) {
+      let streak = 1;
+      // 向前累計
       for (let i = dayIndex - 1; i >= 0; i--) {
         const prevIso = formatDateIso(periodDays[i]);
         const entry = getScheduleEntry(staffId, prevIso);
@@ -3013,8 +3076,32 @@ function saveState() {
         }
         break;
       }
-      return streak;
+      // 向後累計 (既有已排定班別)
+      for (let i = dayIndex + 1; i < periodDays.length; i++) {
+        const nextIso = formatDateIso(periodDays[i]);
+        const entry = getScheduleEntry(staffId, nextIso);
+        if (entry && entry.shiftId) {
+          const shift = state.shifts.find(sh => sh.id === entry.shiftId);
+          if (shift && !shift.isLeave && shift.hours > 0) {
+            streak++;
+            continue;
+          }
+        }
+        break;
+      }
+      return streak > maxConsecutive;
     }
+
+    // Helper: 陣列隨機洗牌演算法 (Fisher-Yates)
+    function shuffleArray(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    let newlyAssignedCount = 0;
 
     periodDays.forEach((d, dayIndex) => {
       const dateIso = formatDateIso(d);
@@ -3022,49 +3109,79 @@ function saveState() {
       const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
       const workingToday = new Set();
 
-      // 1. Assign day-offs according to preferences
+      // 先將當日「既有已填入工作班別」的員工加入 workingToday
       state.staff.forEach(staff => {
-        if (staff.offPref !== 'none' && parseInt(staff.offPref, 10) === dayOfWeek) {
-          state.schedules[`${staff.id}_${dateIso}`] = { shiftId: 'shift_off', otHours: 0 };
+        const entry = getScheduleEntry(staff.id, dateIso);
+        if (entry && entry.shiftId) {
+          const shift = state.shifts.find(sh => sh.id === entry.shiftId);
+          if (shift && !shift.isLeave && shift.hours > 0) {
+            workingToday.add(staff.id);
+          }
         }
       });
 
-      // 2. For each work shift, determine requirement based on weekday vs holiday setting
-      workShifts.forEach(shift => {
-        let needed = isWeekend
+      // 1. 偏好休假：僅針對「當日尚未填入班別」的員工排定
+      const staffForOffPref = shuffleArray([...state.staff]);
+      staffForOffPref.forEach(staff => {
+        const key = `${staff.id}_${dateIso}`;
+        const entry = getScheduleEntry(staff.id, dateIso);
+        if (!entry || !entry.shiftId) {
+          if (staff.offPref !== 'none' && parseInt(staff.offPref, 10) === dayOfWeek) {
+            const defaultOffShift = state.shifts.find(s => s.id === 'shift_off') || state.shifts.find(s => s.isLeave) || { id: 'shift_off' };
+            state.schedules[key] = { shiftId: defaultOffShift.id, otHours: 0 };
+            newlyAssignedCount++;
+          }
+        }
+      });
+
+      // 2. 依班別需求排定上班（隨機打散順序，以隨機非固定順序選拔合格員工）
+      const dailyWorkShifts = shuffleArray([...workShifts]);
+      dailyWorkShifts.forEach(shift => {
+        let totalTarget = isWeekend
           ? (state.rules.holidayShiftMin && typeof state.rules.holidayShiftMin[shift.id] === 'number' ? state.rules.holidayShiftMin[shift.id] : (shift.targetStaff || 1))
           : (state.rules.weekdayShiftMin && typeof state.rules.weekdayShiftMin[shift.id] === 'number' ? state.rules.weekdayShiftMin[shift.id] : (shift.targetStaff || 1));
 
         if (state.customShiftRequirements) {
           const customReq = state.customShiftRequirements.find(r => r.date === dateIso && r.shiftId === shift.id);
           if (customReq && typeof customReq.count === 'number') {
-            needed = customReq.count;
+            totalTarget = customReq.count;
           }
         }
-        if (needed <= 0) return;
-        let assigned = 0;
 
-        // Candidate filtering with debugging constraints (防連勤過長、防工時超量、防互斥、防職位衝突)
+        // 計算當日該班別「既有已排定」之人數
+        let alreadyAssignedForShift = 0;
+        state.staff.forEach(staff => {
+          const entry = getScheduleEntry(staff.id, dateIso);
+          if (entry && entry.shiftId === shift.id) {
+            alreadyAssignedForShift++;
+          }
+        });
+
+        const needed = Math.max(0, totalTarget - alreadyAssignedForShift);
+        if (needed <= 0) return;
+
+        // 候選人篩選：嚴格確保不覆蓋已有班別，並依照所有排班除錯規則
         const filterCandidate = (staff, strictHours = true) => {
           const key = `${staff.id}_${dateIso}`;
-          if (state.schedules[key]) return false; // Already assigned or off
+          const entry = getScheduleEntry(staff.id, dateIso);
+          if (entry && entry.shiftId) return false; // 已有排班絕對不覆蓋！
           if (workingToday.has(staff.id)) return false;
 
-          // 1. 除錯規則：連續出勤上限 (超過法定上限絕對不能排)
-          const currentStreak = getStreakDaysBefore(staff.id, dayIndex);
-          if (currentStreak + 1 > maxConsecutive) return false;
+          // 1. 排班規則：連續出勤上限 (雙向檢核)
+          if (wouldExceedConsecutive(staff.id, dayIndex)) return false;
 
-          // 2. 除錯規則：單日最高工時上限
+          // 2. 排班規則：單日最高工時上限
           if (shift.hours > maxDailyHours) return false;
 
-          // 3. 除錯規則：週期工時上限 (超過則優先讓給其他同仁)
-          if (strictHours && (staffHoursMap[staff.id] + shift.hours > periodMaxHours)) return false;
+          // 3. 排班規則：個人週期工時上限 / 總體上限
+          const staffPeriodMax = (typeof staff.periodMaxHours === 'number' && staff.periodMaxHours > 0) ? staff.periodMaxHours : periodMaxHours;
+          if (strictHours && (staffHoursMap[staff.id] + shift.hours > staffPeriodMax)) return false;
 
-          // 4. 除錯規則：職位限制
+          // 4. 排班規則：職位限制 (限制該職稱不得排此班別)
           const restricted = state.roleRestrictions.some(r => r.role === staff.role && r.shiftId === shift.id);
           if (restricted) return false;
 
-          // 5. 除錯規則：搭檔互斥衝突
+          // 5. 排班規則：搭檔互斥衝突
           const conflict = state.antiPairs.some(pair => {
             if (pair[0] === staff.id && workingToday.has(pair[1])) return true;
             if (pair[1] === staff.id && workingToday.has(pair[0])) return true;
@@ -3076,12 +3193,13 @@ function saveState() {
         };
 
         let candidates = state.staff.filter(s => filterCandidate(s, true));
-        // 如果嚴格限制下人數不足，在不違反連勤與互斥的前提下稍放寬工時限制
+        // 若嚴格工時限制下人數不足，在符合連勤與互斥規則下適度放寬工時限制
         if (candidates.length < needed) {
           candidates = state.staff.filter(s => filterCandidate(s, false));
         }
 
-        // Sort by fairness & accumulated hours
+        // 每次填入皆以隨機打散方式選取，同級工時與班數不依名冊順序
+        shuffleArray(candidates);
         const isFairnessShift = state.shiftFairness ? state.shiftFairness.includes(shift.id) : true;
         candidates.sort((a, b) => {
           if (isFairnessShift) {
@@ -3089,7 +3207,11 @@ function saveState() {
             const countB = shiftCountMap[b.id][shift.id] || 0;
             if (countA !== countB) return countA - countB;
           }
-          return (staffHoursMap[a.id] || 0) - (staffHoursMap[b.id] || 0);
+          // 工時相近（以4小時為彈性區間）的人員隨機排序，打破名冊順序
+          const tierA = Math.floor((staffHoursMap[a.id] || 0) / 4);
+          const tierB = Math.floor((staffHoursMap[b.id] || 0) / 4);
+          if (tierA !== tierB) return tierA - tierB;
+          return Math.random() - 0.5;
         });
 
         for (let i = 0; i < needed && i < candidates.length; i++) {
@@ -3098,11 +3220,11 @@ function saveState() {
           workingToday.add(chosen.id);
           shiftCountMap[chosen.id][shift.id] = (shiftCountMap[chosen.id][shift.id] || 0) + 1;
           staffHoursMap[chosen.id] = (staffHoursMap[chosen.id] || 0) + (shift.hours || 0);
-          assigned++;
+          newlyAssignedCount++;
         }
       });
 
-      // 2.1 Enforce Weekday / Weekend minimum headcount requirement
+      // 2.1 平日/假日最低上班人數要求 (Headcount Rules)
       const headcountRules = state.rules.headcount || { weekdayMin: 3, weekendMin: 2, customDates: [] };
       let requiredMin = isWeekend ? (headcountRules.weekendMin ?? 2) : (headcountRules.weekdayMin ?? 3);
       if (headcountRules.customDates) {
@@ -3115,20 +3237,26 @@ function saveState() {
       if (workingToday.size < requiredMin) {
         const remainingStaff = state.staff.filter(staff => {
           const key = `${staff.id}_${dateIso}`;
-          if (state.schedules[key]) return false;
+          const entry = getScheduleEntry(staff.id, dateIso);
+          if (entry && entry.shiftId) return false; // 已有排班不覆蓋
           if (workingToday.has(staff.id)) return false;
-          const streak = getStreakDaysBefore(staff.id, dayIndex);
-          if (streak + 1 > maxConsecutive) return false;
+          if (wouldExceedConsecutive(staff.id, dayIndex)) return false;
           return true;
         });
 
-        // 依工時升序補足人力
-        remainingStaff.sort((a, b) => (staffHoursMap[a.id] || 0) - (staffHoursMap[b.id] || 0));
+        shuffleArray(remainingStaff);
+        remainingStaff.sort((a, b) => {
+          const tierA = Math.floor((staffHoursMap[a.id] || 0) / 4);
+          const tierB = Math.floor((staffHoursMap[b.id] || 0) / 4);
+          if (tierA !== tierB) return tierA - tierB;
+          return Math.random() - 0.5;
+        });
 
         for (const candidate of remainingStaff) {
           if (workingToday.size >= requiredMin) break;
 
-          const availableShift = workShifts.find(shift => {
+          const availableShifts = shuffleArray([...workShifts]);
+          const availableShift = availableShifts.find(shift => {
             const restricted = state.roleRestrictions.some(r => r.role === candidate.role && r.shiftId === shift.id);
             if (restricted) return false;
             const conflict = state.antiPairs.some(pair => {
@@ -3145,16 +3273,20 @@ function saveState() {
             workingToday.add(candidate.id);
             shiftCountMap[candidate.id][availableShift.id] = (shiftCountMap[candidate.id][availableShift.id] || 0) + 1;
             staffHoursMap[candidate.id] = (staffHoursMap[candidate.id] || 0) + (availableShift.hours || 0);
+            newlyAssignedCount++;
           }
         }
       }
 
-      // 3. For any remaining unassigned staff on this day, assign default off shift
-      state.staff.forEach(staff => {
+      // 3. 當日「仍完全無排班（空白）」之同仁，指派預設休假 (絕不覆蓋任何既有已排定班別)
+      const staffForRemainingOff = shuffleArray([...state.staff]);
+      staffForRemainingOff.forEach(staff => {
         const key = `${staff.id}_${dateIso}`;
-        if (!state.schedules[key]) {
+        const entry = getScheduleEntry(staff.id, dateIso);
+        if (!entry || !entry.shiftId) {
           const defaultOffShift = state.shifts.find(s => s.id === 'shift_off') || state.shifts.find(s => s.isLeave) || { id: 'shift_off' };
           state.schedules[key] = { shiftId: defaultOffShift.id, otHours: 0 };
+          newlyAssignedCount++;
         }
       });
     });
@@ -3163,9 +3295,9 @@ function saveState() {
     renderAll();
     const violationsAfter = getAllViolations();
     if (violationsAfter.length === 0) {
-      showToast('✨ 智慧自動排班已完成！產出之班表零異常，完全符合各項法規與人力設定！', 'success');
+      showToast(`✨ 智慧自動排班完成！已填補 ${newlyAssignedCount} 格未排班天數，既有排定班別完整保留，且零異常完全合規！`, 'success');
     } else {
-      showToast(`✨ 智慧自動排班已完成！已最大化排班，目前檢測到 ${violationsAfter.length} 項需要微調之狀況。`, 'info');
+      showToast(`✨ 智慧自動排班完成！已填補 ${newlyAssignedCount} 格未排班天數，既有班別完整保留（目前檢測到 ${violationsAfter.length} 項需微調）。`, 'info');
     }
   }
 
