@@ -536,15 +536,15 @@
             <input type="text" id="shift-name" class="form-control" placeholder="例：A、B、C、打菜、休假" required>
           </div>
 
-          <!-- 班別中文代碼與英文代碼並排，不要分兩行 -->
-          <div class="form-row-2col" style="margin-bottom:0.65rem;">
-            <div class="form-group">
-              <label for="shift-code">中文代碼 (限1字) *</label>
-              <input type="text" id="shift-code" class="form-control" placeholder="例：A、B、休" maxlength="1" required>
+          <!-- 班別中文代碼與英文代碼並排縮短，避免手機檢視時橫向溢出 -->
+          <div class="shift-codes-row" style="display:flex;gap:1rem;margin-bottom:0.65rem;flex-wrap:wrap;align-items:flex-start;">
+            <div class="form-group" style="flex:0 0 auto;">
+              <label for="shift-code" style="white-space:nowrap;font-size:0.82rem;font-weight:600;">中文代碼 (限1字) *</label>
+              <input type="text" id="shift-code" class="form-control shift-short-input" placeholder="例:A" maxlength="1" style="width:72px;text-align:center;font-weight:700;font-size:1.05rem;" required>
             </div>
-            <div class="form-group">
-              <label for="shift-en-code">英文代碼 (限1字大寫) *</label>
-              <input type="text" id="shift-en-code" class="form-control" placeholder="例：A、B、H" maxlength="1" style="text-transform:uppercase;" required>
+            <div class="form-group" style="flex:0 0 auto;">
+              <label for="shift-en-code" style="white-space:nowrap;font-size:0.82rem;font-weight:600;">英文代碼 (限1字大寫) *</label>
+              <input type="text" id="shift-en-code" class="form-control shift-short-input" placeholder="例:A" maxlength="1" style="width:72px;text-align:center;font-weight:700;font-size:1.05rem;text-transform:uppercase;" required>
             </div>
           </div>
 
@@ -1062,11 +1062,15 @@
             💾 匯出 JSON 備份
           </button>
         </div>
-        <div style="display:flex;gap:0.5rem;">
+        <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;">
           <button id="btn-do-export-excel" class="btn btn-primary">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
             確認匯出 EXCEL
           </button>
+          <a href="https://docs.google.com/spreadsheets/d/1tZ9ikVSqz-y7CZ1IJ2xBaYNY6TVB69Z_psDw7vXLSEY/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" id="btn-view-online-schedule" title="打開 Google 試算表查看班表" style="text-decoration:none;display:inline-flex;align-items:center;gap:0.35rem;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            查看班表
+          </a>
           <button class="btn btn-secondary modal-close-btn" data-close="modal-excel-options">取消</button>
         </div>
       </div>

@@ -1614,6 +1614,9 @@ th.diagonal-header-cell {
 .modal-body {
   padding: 1.25rem 1.5rem;
   overflow-y: auto;
+  overflow-x: hidden;
+  max-width: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -1628,13 +1631,13 @@ th.diagonal-header-cell {
   gap: 0.75rem;
 }
 
-.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; min-width: 0; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.form-row-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
-.form-row-3col { display: flex; gap: 0.5rem; }
+.form-row-2col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; }
+.form-row-3col { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .form-row-3col-equal {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.5rem;
 }
 .form-row-3col-equal .form-group {
@@ -1652,6 +1655,24 @@ th.diagonal-header-cell {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* Shift Short Input & Codes Row */
+.shift-codes-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.65rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.shift-short-input {
+  width: 72px !important;
+  max-width: 72px !important;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 0.4rem 0.25rem;
 }
 
 .form-control {
@@ -2353,8 +2374,28 @@ th.diagonal-header-cell {
 
   /* Bottom Nav */
   .mobile-bottom-nav { display: flex; }
-  .toast-container { bottom: 4.5rem; right: 1rem; left: 1rem; }
-  .modal-dialog { max-height: 94vh; border-radius: var(--radius-lg); }
+  /* Modal Mobile Optimization */
+  .modal-backdrop { padding: 0.5rem; overflow-x: hidden; }
+  .modal-dialog {
+    max-height: 94vh;
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+  .modal-header,
+  .modal-footer {
+    padding: 0.85rem 1rem;
+    box-sizing: border-box;
+  }
+  .modal-body {
+    padding: 1rem 0.85rem;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    max-width: 100%;
+  }
   .form-row { grid-template-columns: 1fr; gap: 0.75rem; }
   .drawer-shifts-grid { grid-template-columns: 1fr; }
 }

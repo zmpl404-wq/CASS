@@ -3570,18 +3570,21 @@ function saveState() {
       const bgDisplay = shift.bgTransparent ? '透明' : shift.color;
 
       item.innerHTML = `
-        <div style="display:flex;align-items:center;gap:0.75rem;flex:1;min-width:0;">
-          <div style="width:16px;height:16px;border-radius:4px;background:${shift.bgTransparent ? 'transparent' : shift.color};box-shadow:${shift.bgTransparent ? 'none' : '0 0 4px ' + shift.color + '80'};border:1px solid ${shift.color};"></div>
-          <div style="min-width:0;">
-            <div style="font-weight:700;font-size:0.9rem;color:var(--text-primary);">
-              ${escapeHtml(shift.name)} <span style="color:${shift.textColor || '#fff'};background:${shift.bgTransparent ? 'transparent' : shift.color};padding:0 4px;border-radius:3px;">[${shift.code}]</span> / EN: [${shift.enCode || shift.code}] ${leaveTag}
+        <div style="display:flex;align-items:center;gap:0.6rem;flex:1;min-width:0;">
+          <div style="width:16px;height:16px;border-radius:4px;background:${shift.bgTransparent ? 'transparent' : shift.color};box-shadow:${shift.bgTransparent ? 'none' : '0 0 4px ' + shift.color + '80'};border:1px solid ${shift.color};flex-shrink:0;"></div>
+          <div style="min-width:0;flex:1;word-break:break-word;">
+            <div style="font-weight:700;font-size:0.88rem;color:var(--text-primary);display:flex;align-items:center;flex-wrap:wrap;gap:4px;">
+              <span>${escapeHtml(shift.name)}</span>
+              <span style="color:${shift.textColor || '#fff'};background:${shift.bgTransparent ? 'transparent' : shift.color};padding:0 4px;border-radius:3px;">[${shift.code}]</span>
+              <span style="font-size:0.75rem;color:var(--text-secondary);">EN:[${shift.enCode || shift.code}]</span>
+              ${leaveTag}
             </div>
-            <div style="font-size:0.75rem;color:var(--text-muted);">
+            <div style="font-size:0.75rem;color:var(--text-muted);word-break:break-word;margin-top:2px;">
               ${shift.start} ~ ${shift.end} ・ 計薪 ${shift.hours}h ・ 目標 ${shift.targetStaff} 人 ・ 字體: <span style="color:${shift.textColor || '#fff'};">■</span>
             </div>
           </div>
         </div>
-        <div style="display:flex;gap:4px;align-items:center;flex-shrink:0;">
+        <div style="display:flex;gap:4px;align-items:center;flex-shrink:0;margin-left:0.35rem;">
           <button class="btn btn-icon-only btn-edit-shift" data-id="${shift.id}" title="編輯班別" style="color:var(--accent-primary);">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
           </button>
